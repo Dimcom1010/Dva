@@ -1,0 +1,13 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- README.md	(revision fbd8fe0b76c8771a3be166b0a7c606cb3c7e8ccb)
++++ README.md	(revision 2e64c94d428d832ae294828f233da1a5ab33f79a)
+@@ -1,4 +1,4 @@
+-# Getting Started with Create React App
++#1 Getting Started with Create React App
+ 
+ This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ 
