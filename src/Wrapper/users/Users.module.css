@@ -1,0 +1,27 @@
+.foto{
+    display: block;
+    width: 100px;
+
+}
+.usersFotoNull{
+    width: 100px;
+
+}
+.users{
+    display: flex;
+    margin: 110px;
+}
+.usersInfo{
+    display: block;
+    width: 500px;
+
+}
+.pagesUsers{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+.activPagesUsers{
+    font-size: 30px;
+
+}

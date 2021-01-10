@@ -1,0 +1,37 @@
+.World{
+
+}
+.human{
+
+
+}
+.foto{
+    display: block;
+    width: 100px;
+    height: 100px;
+
+    background-color: #aaaaaa;
+}
+.lockInfo{
+
+
+}
+.name{
+    display: block;
+    width: 500px;
+    height: 40px;
+    text-align: left;
+    background-color: #aaaaaa;
+}
+.status{
+    display: block;
+    background-color: #aaaaaa;
+    text-align: left;
+}
+.button{
+    display: block;
+    width: 70px;
+    height: 30px;
+    background-color: #aaaaaa;
+}
+

@@ -1,0 +1,66 @@
+.conteinerFriends {
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+/* меню списка моих друзей*/
+.MyFriends {
+    width: 30%;
+}
+
+.MyFriend {
+    min-width: 200px;
+    font-family: 'Open Sans', arial;
+    font-size: 11px;
+    padding: 3px 7px;
+    font-weight: 600;
+    margin: 7px 0;
+    color: #ffffff;
+    background-color: #282828;
+    border-radius: 7px;
+    text-transform: uppercase;
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+
+.ava{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px 0 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+/* реакция на наведение на меню списка моих друзей*/
+.MyFriend:hover {
+    background-color: #555555;
+
+}
+
+/* стилизация диалогов*/
+.Mydialogs {
+    width: 70%;
+}
+
+.MyDialog {
+    display: flex;
+    font-size: 15px;
+    margin: 15px 30px;
+    text-align: left;
+    align-items: center;
+}
+.avaDialog{
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 20px 0 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
