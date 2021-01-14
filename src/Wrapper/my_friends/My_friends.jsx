@@ -3,12 +3,18 @@ import mcss from './My_friends.module.css';
 import {NavLink} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
 import {addPostCreator} from "../../Redux/dialogReduser";
+import {maxLength, nothing} from "../../utils/validation/validate";
+import {Textarea} from "../../Elements/forms/forms";
+
+const maxLength40=maxLength(40)
 
 const My_friendsForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name={'Post1'} component={'textarea'}/>
+            <Field name={'Post1'} component={Textarea}
+                   lable="messeg"                         // отображается в placeholder
+                   validate={[maxLength40,nothing]}/>
             <button>Отправить</button>
         </form>
     )

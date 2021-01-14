@@ -3,10 +3,17 @@ import stules from "./Forms.module.css"
 
 
 
-export const Textarea =(props)=>{
+export const Textarea =({input,meta, ...props})=>{
+    const hasError = meta.touched && meta.error
+
     return (
-        <div>
-            <textarea {...props}/>
+        <div >
+
+            <textarea {...input} placeholder={props.lable}></textarea>
+
+            {hasError && <span className={stules.styleSpan}>ERROR</span>}
+
+
         </div>
     )
 }
@@ -16,9 +23,10 @@ export const Input =({input,meta, ...props})=>{
     const hasError = meta.touched && meta.error
 
     return (
-        <div className={stules.formControl+ " "+ (hasError ? stules.error:" ")}>
-            <div className="div"><input {...input} {...props}/></div>
-            {hasError && <span>Same error</span>}
+        <div className={stules.formControl  + " "+ (hasError ? stules.error : " ") }>
+
+            <div ><input {...input} {...props}/></div>
+            {hasError && <span className={stules.styleSpan}>Same error</span>}
         </div>
     )
 }
@@ -27,7 +35,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
         <label>{label}</label>
         <div>
             <input {...input} placeholder={label} type={type}/>
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+            {touched && ((error && <span className={stules.styleSpan} >{error}</span>) || (warning && <span className={stules.styleSpan}>{warning}</span>))}
         </div>
     </div>
 )
