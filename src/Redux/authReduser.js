@@ -20,7 +20,7 @@ export const authReduser = (state = initialState, action) => {
 
             return {
                 ...state,
-                ...action.data,
+                ...action.payload,
                 isAuth:true
             }
         case BUTTERN_IN_PROGRESS:
@@ -30,7 +30,7 @@ export const authReduser = (state = initialState, action) => {
                 ...state,
                 buttonInProgress: action.progress
              ? [...state.buttonInProgress,action.userId]
-             : state.buttonInProgress.filter(id=>id != action.userId)
+             : state.buttonInProgress.filter(id=>id !== action.userId)
             }
         default:
             return state;
@@ -40,8 +40,8 @@ export const authReduser = (state = initialState, action) => {
 }
 
 
-export const setAuthUserData = (userId,login,email) =>
-    ({type:SET_USER_DATA, data:{userId,login,email}}
+export const setAuthUserData = (userId,login,email,isAuth) =>
+    ({type:SET_USER_DATA, payload:{userId,login,email,isAuth}}
     )
 export const setButtonInProgress = (progress,userId) => ({type:BUTTERN_IN_PROGRESS, progress,userId})
 
@@ -52,7 +52,23 @@ export const authMeThunkCreator=()=>(dispatch)=>{
         .then((response) => {
             if (response.resultCode === 0){
                 let {id, login, email}= response.data
-                dispatch(setAuthUserData(id, login, email))
+                dispatch(setAuthUserData(id, login, email, true))
+            }
+        })
+}
+export const loginThunkCreator=(email, password, rememberMe)=>(dispatch)=>{
+    authAPI.login()
+        .then((response) => {
+            if (response.resultCode === 0){
+                dispatch(authMeThunkCreator())
+            }
+        })
+}
+export const logOutThunkCreator=()=>(dispatch)=>{
+    authAPI.logOut()
+        .then((response) => {
+            if (response.resultCode === 0){
+                dispatch(setAuthUserData(null, null, null, false))
             }
         })
 }

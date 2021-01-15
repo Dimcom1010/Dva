@@ -3,7 +3,7 @@ import style from './Users.module.css'
 import usersFotoNull from '../../img/UsesrFotoNull.png'
 import {NavLink} from "react-router-dom";
 import Preloader from "../../Elements/preloder/preloader";
-import Redirect from 'react-router-dom/es/Redirect'
+import { Redirect } from "react-router-dom"
 
 const Users = (props) => {
 
@@ -84,7 +84,7 @@ const Users = (props) => {
                             <div className={style.users}>
 
                                 <NavLink to={'/profile/' + u.id}>
-                                    <img src={u.photos.small === null ? usersFotoNull : u.photos.small}
+                                    <img alt="img" src={u.photos.small === null ? usersFotoNull : u.photos.small}
                                          className={style.foto}/>
                                 </NavLink>
 

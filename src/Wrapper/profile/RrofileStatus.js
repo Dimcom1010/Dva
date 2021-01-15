@@ -37,8 +37,7 @@ componentDidUpdate(prevProps, prevState, snapshot) {
         status: this.state.status
     })
     }
-        let a =this.state
-        let b =this.props
+
 }
 
     render() {

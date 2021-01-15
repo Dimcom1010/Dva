@@ -7,7 +7,6 @@ import {
     getUserProfileThunkCreator,
     updateUserProfileThunkCreator
 } from "../../Redux/profileReduser";
-import {withAuthComponentHOC} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -30,8 +29,7 @@ class ProfileAPIConteiner extends React.Component {
 
         return (
             <div className='CoverPage'>
-                <Profile {...this.props} updateUserProfileThunkCreator={this.props.updateUserProfileThunkCreator}
-                         updateUserProfileThunkCreator={this.props.updateUserProfileThunkCreator}/>
+                <Profile {...this.props} updateUserProfileThunkCreator={this.props.updateUserProfileThunkCreator}/>
             </div>
         )
     }

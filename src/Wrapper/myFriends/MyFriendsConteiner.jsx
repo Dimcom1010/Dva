@@ -1,5 +1,4 @@
-import React from 'react';
-import My_friends from "./My_friends";
+import MyFriends from "./MyFriends";
 import {connect} from "react-redux";
 import {addPostCreator} from "../../Redux/dialogReduser";
 
@@ -9,11 +8,11 @@ let mapStateToProps =(state)=>{
         DialogsData: state.DialogsData2.DialogsData,
         FriendsData: state.DialogsData2.FriendsData,
         NowPostText: state.DialogsData2.NowPostText,
-        from:state.form.My_friends
+        from:state.form.MyFriends
     }
 }
 
 
-const My_friendsConteiner = connect (mapStateToProps, {addPostCreator})(My_friends);
+const MyFriendsConteiner = connect (mapStateToProps, {addPostCreator})(MyFriends);
 
-export default My_friendsConteiner
+export default MyFriendsConteiner

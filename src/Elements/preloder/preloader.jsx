@@ -7,7 +7,7 @@ const Preloader = (props) => {
     return (
         <div>
 
-            <img src={preloaderGif}/>
+            <img alt="img" src={preloaderGif}/>
 
 
         </div>

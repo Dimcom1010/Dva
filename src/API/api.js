@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 
@@ -34,7 +33,7 @@ export const profileAPI = {
     getUser(id) {
         return (
 
-            intance.get(`profile/` + id)
+            intance.get(`profile/` + id) //  с get параметром мы можем на сервер через( ? ) квери строка
 
         )
     },
@@ -67,12 +66,16 @@ export const authAPI = {
                 })
         )
     },
-    login(email,password,rememberMe,captcha) {
+    login(email, password, rememberMe= false) {
         return (
-            intance.post(`auth/login`)
+            intance.post(`auth/login`, {email, password, rememberMe}) //при пост запросе мы можем на сервер отправить щё и данные email,password,rememberMe,captcha
 
         )
     },
+    logOut() {
+        return (
+            intance.delete(`auth/login`)
 
-
+        )
+    },
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './My_foto.css';
+import './MyFoto.css';
 
 
 /*
@@ -36,7 +36,7 @@ const Foto = (props) => {
                 <div className="foto">
                     <img className="foto" src={"./Foto/Foto_" + props.fotoId + ".jpg"} alt="s"/>
                 </div>
-                <a href="#">
+                <a href=" https://nikuda.md">
                     <div className="buttonlikes">{props.fotolikes} </div>
                 </a>
             </div>

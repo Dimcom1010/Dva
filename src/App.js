@@ -1,9 +1,9 @@
 import './App.css';
-import Route from 'react-router-dom/es/Route';
+import { Route } from "react-router-dom";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import My_friendsConteiner from './Wrapper/my_friends/My_friendsConteiner';
-import My_fotoContainer from './Wrapper/my_foto/My_fotoContainer';
+import MyFriendsConteiner from './Wrapper/myFriends/MyFriendsConteiner';
+import MyFotoContainer from './Wrapper/myFoto/MyFotoContainer';
 
 import ClassComponentConteiner from './Wrapper/classComponent/ClassComponentConteiner';
 import UsersConteiner from './Wrapper/users/UsersConteiner';
@@ -24,10 +24,10 @@ function App(props) {
                 <NavLink to='/profile'>                                {/*навигация*/}
                     <div className="navBar_Item">Profile</div>
                 </NavLink>
-                <NavLink to='/my_friends'>
+                <NavLink to='/myFriends'>
                     <div className="navBar_Item">My friends</div>
                 </NavLink>
-                <NavLink to='/my_foto'>
+                <NavLink to='/myFoto'>
                     <div className="navBar_Item">My foto</div>
                 </NavLink>
 
@@ -55,9 +55,9 @@ function App(props) {
                     <Route exact path='/profile' render={() => <ProfileConteiner/>}/>
                     <Route exact path='/profile/:userId' render={() => <ProfileConteiner/>}/>
 
-                    <Route exact path='/My_friends' render={() => <My_friendsConteiner store={props.store}/>}/>
+                    <Route exact path='/MyFriends' render={() => <MyFriendsConteiner store={props.store}/>}/>
 
-                    <Route exact path='/My_foto' render={() => <My_fotoContainer store={props.store}/>}/>
+                    <Route exact path='/MyFoto' render={() => <MyFotoContainer store={props.store}/>}/>
                     <Route exact path='/classComp' render={() => <ClassComponentConteiner/>}/>
                     <Route exact path='/users' render={() => <UsersConteiner/>}/>
                     <Route exact path='/login' render={() => <Login/>}/>

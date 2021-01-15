@@ -1,9 +1,9 @@
 import React from 'react';
 import Preloader from '../../Elements/preloder/preloader';
 import usersFotoNull from '../../img/UsesrFotoNull.png';
-import Redirect from 'react-router-dom/es/Redirect'
+import { Redirect } from "react-router-dom"
 import RrofileStatus from "./RrofileStatus";
-import {updateUserProfileThunkCreator} from "../../Redux/profileReduser";
+
 
 
 const Profile = (props) => {
@@ -21,7 +21,7 @@ return (
                         <h1>I'm {props.profile.fullName} </h1>
                         <div>Статус_-_{props.profile.aboutMe} </div>
                         <div>мой VK_-_{props.profile.contacts.vk} </div>
-                        <img  src={props.profile.photos.small===null
+                        <img alt="img" src={props.profile.photos.small===null
                         ? usersFotoNull
                         :props.profile.photos.small}/>
                         <div>мой VK_-_{props.profile.contacts.vk} </div>

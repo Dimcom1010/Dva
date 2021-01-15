@@ -1,14 +1,13 @@
 import React from 'react';
-import mcss from './My_friends.module.css';
+import mcss from './MyFriends.module.css';
 import {NavLink} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
-import {addPostCreator} from "../../Redux/dialogReduser";
 import {maxLength, nothing} from "../../utils/validation/validate";
 import {Textarea} from "../../Elements/forms/forms";
 
 const maxLength40=maxLength(40)
 
-const My_friendsForm = (props) => {
+const MyFriendsForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
@@ -19,7 +18,7 @@ const My_friendsForm = (props) => {
         </form>
     )
 }
-const ReduxMy_friendsForm = reduxForm({form: 'My_friends'})(My_friendsForm)
+const ReduxMyFriendsForm = reduxForm({form: 'MyFriends'})(MyFriendsForm)
 
 
 const Friend = (props) => {
@@ -46,7 +45,7 @@ const Dialog = (props) => {
     )
 }
 
-const My_friends = (props) => {
+const MyFriends = (props) => {
 
     let FriendsElement = props.FriendsData.map(x => <Friend key={x.id} id={x.id} name={x.name} lastname={x.lastname}
                                                             tel={x.tel}> </Friend>)
@@ -64,7 +63,7 @@ const My_friends = (props) => {
                 </div>
                 <div className={mcss.Mydialogs}>
                     {DialogElement}
-                    <ReduxMy_friendsForm onSubmit={onAddMessage}/>
+                    <ReduxMyFriendsForm onSubmit={onAddMessage}/>
 
 
                 </div>
@@ -72,5 +71,5 @@ const My_friends = (props) => {
         </div>
     )
 }
-export default My_friends
+export default MyFriends
 

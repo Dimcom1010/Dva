@@ -1,4 +1,4 @@
-const ADD_NOW_POST_TEXT = 'ADD-NOW-POST-TEXT'
+/*const ADD_NOW_POST_TEXT = 'ADD-NOW-POST-TEXT'*/
 const ADD_POST = 'ADD-POST';
 
 let initialState = {

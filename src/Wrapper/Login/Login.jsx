@@ -2,6 +2,8 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {maxLength, required} from "../../utils/validation/validate";
 import {Input} from "../../Elements/forms/forms";
+import {connect} from "react-redux";
+import {loginThunkCreator, logOutThunkCreator} from "../../Redux/authReduser";
 
 
 const maxLength20=maxLength(20)
@@ -13,15 +15,15 @@ const LoginForm = (props) => {
             <div>
                 <form onSubmit={props.handeleSubmit}>
                     <div>
-                        <Field name={"Login"} component={Input} placeholder={"Login"}
+                        <Field name={"email"} component={Input} placeholder={"Login"}
                                validate={[required, maxLength20]}/>
                     </div>
                     <div>
-                        <Field name={"Password"} component={Input} placeholder={"Password"}
+                        <Field name={"password"} component={Input} placeholder={"Password"} type={"password"}
                                validate={[required, maxLength20]}/>
                     </div>
                     <div>
-                        <Field name={"RememberMe"} component={'input'} type={"checkbox"}/> RememberMe
+                        <Field name={"rememberMe"} component={Input} type={"checkbox"}/> Remember Me
                     </div>
                     <div>
                         <button>Log in</button>
@@ -35,17 +37,22 @@ const LoginForm = (props) => {
 const ReduxLoginForm = reduxForm({form:'Login'})(LoginForm)
 
 const Login =(props) =>{
-    const onSubmit= (formData)=>{
-        console.log(formData)
+
+    const onAddMessage= (values)=>{
+        debugger
+      console.log('WOTT ON')
+       /* debugger
+        props.loginThunkCreator(formData.email, formData.password,formData.rememberMe) //loginThunkCreator это не санк криейтор это коннект подсовывает нам под таким же иминем колбек который диспачит вызов санккриейтора loginThunkCreator ур 78
+*/
     }
     return (
         <>
             <div>
                 <h1>Login</h1>
-                <ReduxLoginForm onSubmit={onSubmit}/>
+                <ReduxLoginForm onSubmit={onAddMessage}/>
             </div>
         </>
     )
 }
 
-export default Login
+export default connect (null, {loginThunkCreator,logOutThunkCreator})(Login) // мы в экспорте подменяем компоненту login контейнерной и поскольк экспорт по дефолту в том месте откуда мы ей вызываем никто ничего не видет ур 78

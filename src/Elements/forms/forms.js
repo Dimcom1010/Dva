@@ -30,12 +30,3 @@ export const Input =({input,meta, ...props})=>{
         </div>
     )
 }
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-    <div>
-        <label>{label}</label>
-        <div>
-            <input {...input} placeholder={label} type={type}/>
-            {touched && ((error && <span className={stules.styleSpan} >{error}</span>) || (warning && <span className={stules.styleSpan}>{warning}</span>))}
-        </div>
-    </div>
-)
