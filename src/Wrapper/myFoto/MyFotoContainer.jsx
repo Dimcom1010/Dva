@@ -1,12 +1,17 @@
 import React from 'react';
 import './MyFoto.css';
 import MyFoto from "./MyFoto";
+import {connect} from "react-redux";
 
-const MyFotoContainer = (props) => {
-    let state=props.store.getState()
 
-    return (
-        <MyFoto FotosData={state.FotosData}/>
-    )
+let mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+        FotosData:state.FotosDataReducers.FotosData1
+    }
 }
+
+const   MyFotoContainer =  connect (mapStateToProps, null)(MyFoto)
+
 export default MyFotoContainer
+

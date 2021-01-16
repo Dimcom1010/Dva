@@ -6,6 +6,8 @@ const intance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {'API-KEY': 'e4c34771-d376-444e-a0b5-b4cfda142428'}
 })
+
+
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 5) {
         return (
@@ -29,33 +31,29 @@ export const usersAPI = {
     }
 }
 
+
 export const profileAPI = {
     getUser(id) {
         return (
-
             intance.get(`profile/` + id) //  с get параметром мы можем на сервер через( ? ) квери строка
-
         )
     },
 
     getStatus(userId){
-        debugger
+
         return (
             intance.get('profile/status/'+userId)
-
         )
     },
 
     updateStatus(status){
-        debugger
+
         return (
             intance.put('profile/status/',{status:status}) // мы на сервер отправляем обыект status которые тредуется по документации
-
         )
     }
-
-
 }
+
 
 export const authAPI = {
     me(id) {
@@ -66,13 +64,14 @@ export const authAPI = {
                 })
         )
     },
-    login(email, password, rememberMe= false) {
-        return (
-            intance.post(`auth/login`, {email, password, rememberMe}) //при пост запросе мы можем на сервер отправить щё и данные email,password,rememberMe,captcha
 
-        )
+    login( email, password, rememberMe= false ) {
+
+        return intance.post(`auth/login`, {email, password, rememberMe}) //при пост запросе мы можем на сервер отправить щё и данные email,password,rememberMe,captcha
     },
+
     logOut() {
+
         return (
             intance.delete(`auth/login`)
 

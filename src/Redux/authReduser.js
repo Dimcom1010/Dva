@@ -21,7 +21,7 @@ export const authReduser = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-                isAuth:true
+
             }
         case BUTTERN_IN_PROGRESS:
 
@@ -48,26 +48,33 @@ export const setButtonInProgress = (progress,userId) => ({type:BUTTERN_IN_PROGRE
 
 
 export const authMeThunkCreator=()=>(dispatch)=>{
+    debugger
     authAPI.me()
         .then((response) => {
             if (response.resultCode === 0){
+                debugger
                 let {id, login, email}= response.data
                 dispatch(setAuthUserData(id, login, email, true))
             }
         })
 }
 export const loginThunkCreator=(email, password, rememberMe)=>(dispatch)=>{
-    authAPI.login()
+    debugger
+    authAPI.login(email, password, rememberMe)
         .then((response) => {
-            if (response.resultCode === 0){
+            debugger
+            if (response.data.resultCode === 0){
                 dispatch(authMeThunkCreator())
             }
         })
 }
 export const logOutThunkCreator=()=>(dispatch)=>{
+    debugger
     authAPI.logOut()
         .then((response) => {
-            if (response.resultCode === 0){
+            debugger
+            if (response.data.resultCode === 0){
+
                 dispatch(setAuthUserData(null, null, null, false))
             }
         })

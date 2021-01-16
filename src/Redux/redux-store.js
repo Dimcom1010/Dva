@@ -12,7 +12,7 @@ import {reducer as formReduser}  from "redux-form"
 
 let reducers = combineReducers({
     DialogsData2 : dialogReduser,
-    FotosData: fotoComentReduser,
+    FotosDataReducers: fotoComentReduser,
     myPost : myPostReduser,
     classComponent:classComponentReduser,
     usersPage:usersReduser,

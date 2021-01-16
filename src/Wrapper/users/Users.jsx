@@ -6,6 +6,7 @@ import Preloader from "../../Elements/preloder/preloader";
 import { Redirect } from "react-router-dom"
 
 const Users = (props) => {
+    debugger
 
     let pageCount = Math.ceil(props.totalCount / props.pageSize)
 
@@ -31,35 +32,7 @@ const Users = (props) => {
                     <br/>
                     <span>_currentPage_-_{props.currentPage}_</span>
                     <br/>
-{/*                    <div>
 
-                        <span className={style.pagesUsers}
-                            onClick={(e) => {
-                            props.onPageChangedThunkCreacor(1, props.pageSize)}}
-                        >{pages[0]}</span>
-                        ...
-                        <span className={style.pagesUsers}
-                              onClick={(e) => {
-                                props.onPageChangedThunkCreacor(props.currentPage - 1, props.pageSize)
-                            }}
-                        >{pages[props.currentPage-2]}</span>
-
-                        <span className={style.activPagesUsers}
-                              onClick={(e) => {
-                                props.onPageChangedThunkCreacor(props.currentPage, props.pageSize)}}
-                        >{pages[props.currentPage-1]}</span>
-
-                        <span className={style.pagesUsers}
-                              onClick={(e) => {
-                                props.onPageChangedThunkCreacor(props.currentPage+1, props.pageSize)}}
-                        >{pages[props.currentPage]}</span>
-                        ...
-                        <span className={style.pagesUsers}
-                              onClick={(e) => {
-                                props.onPageChangedThunkCreacor(pageCount, props.pageSize)}}
-                        >{pages[pageCount-1]}</span>
-
-                    </div>*/}
                     <div>
 
                         {pages.map(p => {

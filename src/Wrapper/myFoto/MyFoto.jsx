@@ -1,34 +1,10 @@
 import React from 'react';
 import './MyFoto.css';
+import {Redirect} from "react-router-dom";
 
 
-/*
-let CometnsData = [
-    {id: 1, fotoId: 1, cometn: "vsdvsdvd", cometnlikes: 2},
-    {id: 1, fotoId: 1, cometn: "vsdvsdvd", cometnlikes: 2},
-    {id: 1, fotoId: 1, cometn: "vsdvsdvd", cometnlikes: 2},
-    {id: 1, fotoId: 1, cometn: "vsdvsdvd", cometnlikes: 2},
-    {id: 1, fotoId: 1, cometn: "vsdvsdvd", cometnlikes: 2},
-];
-*/
-
-
-/*const Cometn = () => {
-    return (
-            <div className="conteinerComent">
-                <img className="ava" src={"./Ava/ava_"+CometnsData.id+".jpg"} alt=""/>
-                <div className="comments">
-                    {CometnsData.cometn}
-                </div>
-                <a href="#">
-                    <div className="button">{CometnsData.cometnlikes}</div>
-                </a>
-            </div>
-    )
-}*/
 
 const Foto = (props) => {
-
 
     return (
         <div>
@@ -49,9 +25,11 @@ const Foto = (props) => {
     )
 }
 
-const My_foto = (props) => {
+const MyFoto = (props) => {
 
-    let FotoData = props.FotosData.FotosData.map(x => <Foto fotoId={x.fotoId} fotolikes={x.fotolikes}> </Foto>)
+    if (props.isAuth===false) return <Redirect to={'/login'}/>
+
+    let FotoData = props.FotosData.map(x => <Foto fotoId={x.fotoId} fotolikes={x.fotolikes}> </Foto>)
     /* let CometnData = CometnsData.map(x => <Cometn id={x.id} fotoId={x.fotoId} cometn={x.cometn} cometnlikes={x.cometnlikes} > </Cometn>)*/
     return (
         <div className='Conteiner'>
@@ -65,4 +43,4 @@ const My_foto = (props) => {
 
     )
 }
-export default My_foto
+export default MyFoto

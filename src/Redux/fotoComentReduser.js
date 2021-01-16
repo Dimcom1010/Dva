@@ -1,5 +1,5 @@
 let initialState = {
-    FotosData: [
+    FotosData1: [
         {fotoId: 1, fotolikes: 2},
         {fotoId: 2, fotolikes: 12},
         {fotoId: 3, fotolikes: 23},

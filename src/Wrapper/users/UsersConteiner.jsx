@@ -43,8 +43,6 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isPreloader: state.preloaderStatus.isPreloader,
         buttonInProgress: state.auth.buttonInProgress,
-
-
     }
 }
 

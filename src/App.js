@@ -38,6 +38,9 @@ function App(props) {
                 <NavLink to='/users'>
                     <div className="navBar_Item">Users</div>
                 </NavLink>
+                <NavLink to='/login'>
+                    <div className="navBar_Item">Login</div>
+                </NavLink>
 
 
             </div>
