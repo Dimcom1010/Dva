@@ -9,6 +9,7 @@ import {profileReduser} from './profileReduser';
 import {authReduser} from './authReduser';
 import thunkMiddleware  from "redux-thunk"
 import {reducer as formReduser}  from "redux-form"
+import {appReduser} from "./appReduser";
 
 let reducers = combineReducers({
     DialogsData2 : dialogReduser,
@@ -19,7 +20,8 @@ let reducers = combineReducers({
     preloaderStatus:preloaderRreduser,
     profilePage:profileReduser,
     auth:authReduser,
-    form: formReduser
+    form: formReduser,
+    appReduser:appReduser
 
 }) ;
 

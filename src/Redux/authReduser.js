@@ -1,4 +1,5 @@
 import {authAPI} from "../API/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const BUTTERN_IN_PROGRESS ='BUTTERN_IN_PROGRESS'
@@ -35,8 +36,6 @@ export const authReduser = (state = initialState, action) => {
         default:
             return state;
     }
-
-
 }
 
 
@@ -45,26 +44,31 @@ export const setAuthUserData = (userId,login,email,isAuth) =>
     )
 export const setButtonInProgress = (progress,userId) => ({type:BUTTERN_IN_PROGRESS, progress,userId})
 
-
-
 export const authMeThunkCreator=()=>(dispatch)=>{
     debugger
-    authAPI.me()
+    return authAPI.me()            // возвращаем промис для аутентификации
         .then((response) => {
             if (response.resultCode === 0){
                 debugger
                 let {id, login, email}= response.data
                 dispatch(setAuthUserData(id, login, email, true))
             }
-        })
+        });
 }
+
 export const loginThunkCreator=(email, password, rememberMe)=>(dispatch)=>{
     debugger
+
     authAPI.login(email, password, rememberMe)
         .then((response) => {
             debugger
             if (response.data.resultCode === 0){
                 dispatch(authMeThunkCreator())
+            }
+            else {
+                let message =response.data.messages.length>0 ? response.data.messages[0] : " Some ERROr"
+
+                dispatch(stopSubmit ("Login", {_error: message }))
             }
         })
 }

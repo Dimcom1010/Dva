@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './MyFoto.css';
 import MyFoto from "./MyFoto";
 import {connect} from "react-redux";

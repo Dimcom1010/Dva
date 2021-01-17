@@ -4,7 +4,7 @@ import {maxLength, required} from "../../utils/validation/validate";
 import {Input} from "../../Elements/forms/forms";
 import {connect} from "react-redux";
 import {loginThunkCreator, logOutThunkCreator} from "../../Redux/authReduser";
-
+import stule from "../../Elements/forms/Forms.module.css"
 
 const maxLength20 = maxLength(20)
 
@@ -22,9 +22,11 @@ const LoginForm = (props) => {
                         <Field name={"password"} component={Input} placeholder={"Password"} type={"password"}
                                validate={[required, maxLength20]}/>
                     </div>
+                    {props.error && <div className={stule.comenErrors}> {props.error} </div>}
                     <div>
                         <Field name={"rememberMe"} component={Input} type={"checkbox"}/> Remember Me
                     </div>
+
                     <div>
                         <button>Log in</button>
                     </div>

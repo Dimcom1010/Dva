@@ -26,7 +26,7 @@ export const Input =({input,meta, ...props})=>{
         <div className={stules.formControl  + " "+ (hasError ? stules.error : " ") }>
 
             <div ><input {...input} {...props}/></div>
-            {hasError && <span className={stules.styleSpan}>Same error</span>}
+            {hasError && <span className={stules.styleSpan}>{meta.error}</span>}
         </div>
     )
 }

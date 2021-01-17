@@ -30,12 +30,12 @@ const MyFoto = (props) => {
     if (props.isAuth===false) return <Redirect to={'/login'}/>
 
     let FotoData = props.FotosData.map(x => <Foto fotoId={x.fotoId} fotolikes={x.fotolikes}> </Foto>)
-    /* let CometnData = CometnsData.map(x => <Cometn id={x.id} fotoId={x.fotoId} cometn={x.cometn} cometnlikes={x.cometnlikes} > </Cometn>)*/
+
     return (
         <div className='Conteiner'>
             {FotoData}
 
-            {/*{CometnData}*/}
+
 
 
         </div>

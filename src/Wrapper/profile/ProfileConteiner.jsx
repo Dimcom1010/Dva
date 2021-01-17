@@ -14,11 +14,12 @@ class ProfileAPIConteiner extends React.Component {
 
     componentDidMount() {
         debugger
-        let id=this.props.match.params.userId
-
-           if (!this.props.match.params.userId)
-        {
-                id =13172
+        let id = this.props.match.params.userId
+        if (!this.props.match.params.userId) {
+            id = this.props.userId
+            if (!id){
+                this.props.history.push('/login')
+            }
         } // в скобках id ользователя который сейчас в строке Http
         debugger
         this.props.getUserProfileThunkCreator(id)
@@ -38,7 +39,8 @@ class ProfileAPIConteiner extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    userId: state.auth.id
 
 })
 

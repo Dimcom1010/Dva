@@ -134,7 +134,7 @@ debugger
 export const FollowedThunkCreacor = (id)=> (dispatch)=>{
     dispatch(setButtonInProgress(true,id)) //
     debugger
-    usersAPI.postFollowed(id)
+    return usersAPI.postFollowed(id)
 
         .then((response) => {
             if (response.data.resultCode === 0) { //если запрос вернулся ok то 0
