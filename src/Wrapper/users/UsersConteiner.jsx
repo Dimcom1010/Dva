@@ -12,7 +12,7 @@ import {
 import Users from "./Users";
 import {setButtonInProgress} from "../../Redux/authReduser";
 import {preloderStatus} from "../../Redux/preloaderReduser";
-import {withAuthComponentHOC} from "../../hoc/withAuthRedirect";
+
 import {compose} from "redux";
 
 
@@ -62,6 +62,6 @@ export default compose (
             unFollowedThunkCreacor,
             FollowedThunkCreacor
         }),
-    withAuthComponentHOC
+   // withAuthComponentHOC
 )
 (UsersAPIComponents)

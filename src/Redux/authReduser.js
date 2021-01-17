@@ -14,18 +14,16 @@ let initialState = {
 
 export const authReduser = (state = initialState, action) => {
 
-
     switch (action.type) {
 
         case SET_USER_DATA:
-
             return {
                 ...state,
                 ...action.payload,
 
             }
-        case BUTTERN_IN_PROGRESS:
 
+        case BUTTERN_IN_PROGRESS:
             return{
 
                 ...state,

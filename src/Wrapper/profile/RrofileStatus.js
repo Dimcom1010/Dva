@@ -1,10 +1,8 @@
 import React from 'react';
 
-
 class RrofileStatus extends React.Component {
 
-
-    state = {
+    state = {                     // создани локальный статус для хранения временных данных во время изменения статуса
         editMode: false,
         status:this.props.status
     }
@@ -20,7 +18,7 @@ class RrofileStatus extends React.Component {
         this.setState({
             editMode: false
         })
-debugger
+
        this.props.updateUserProfileThunkCreator(this.state.status)
     }
 

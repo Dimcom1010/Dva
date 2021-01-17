@@ -16,6 +16,7 @@ class ProfileAPIConteiner extends React.Component {
         debugger
         let id = this.props.match.params.userId
         if (!this.props.match.params.userId) {
+            debugger
             id = this.props.userId
             if (!id){
                 this.props.history.push('/login')
@@ -40,7 +41,7 @@ class ProfileAPIConteiner extends React.Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    userId: state.auth.id
+    userId: state.auth.userId
 
 })
 
