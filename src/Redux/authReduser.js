@@ -2,7 +2,7 @@ import {authAPI} from "../API/api";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
-const BUTTERN_IN_PROGRESS ='BUTTERN_IN_PROGRESS'
+const BUTTERN_IN_PROGRESS = 'BUTTERN_IN_PROGRESS'
 
 let initialState = {
     id: null,
@@ -20,16 +20,14 @@ export const authReduser = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-
             }
 
         case BUTTERN_IN_PROGRESS:
-            return{
-
+            return {
                 ...state,
                 buttonInProgress: action.progress
-             ? [...state.buttonInProgress,action.userId]
-             : state.buttonInProgress.filter(id=>id !== action.userId)
+                    ? [...state.buttonInProgress, action.userId]
+                    : state.buttonInProgress.filter(id => id !== action.userId)
             }
         default:
             return state;
@@ -37,47 +35,34 @@ export const authReduser = (state = initialState, action) => {
 }
 
 
-export const setAuthUserData = (userId,login,email,isAuth) =>
-    ({type:SET_USER_DATA, payload:{userId,login,email,isAuth}}
+export const setAuthUserData = (userId, login, email, isAuth) =>
+    ({type: SET_USER_DATA, payload: {userId, login, email, isAuth}}
     )
-export const setButtonInProgress = (progress,userId) => ({type:BUTTERN_IN_PROGRESS, progress,userId})
+export const setButtonInProgress = (progress, userId) => ({type: BUTTERN_IN_PROGRESS, progress, userId})
 
-export const authMeThunkCreator=()=>(dispatch)=>{
-    debugger
-    return authAPI.me()            // возвращаем промис для аутентификации
-        .then((response) => {
-            if (response.resultCode === 0){
-                debugger
-                let {id, login, email}= response.data
-                dispatch(setAuthUserData(id, login, email, true))
-            }
-        });
+export const authMeThunkCreator = () => async (dispatch) => {
+
+    let response = await authAPI.me()            // возвращаем промис для аутентификации
+    if (response.resultCode === 0) {
+        debugger
+        let {id, login, email} = response.data
+        dispatch(setAuthUserData(id, login, email, true))
+    }
 }
 
-export const loginThunkCreator=(email, password, rememberMe)=>(dispatch)=>{
-    debugger
-
-    authAPI.login(email, password, rememberMe)
-        .then((response) => {
-            debugger
-            if (response.data.resultCode === 0){
-                dispatch(authMeThunkCreator())
-            }
-            else {
-                let message =response.data.messages.length>0 ? response.data.messages[0] : " Some ERROr"
-
-                dispatch(stopSubmit ("Login", {_error: message }))
-            }
-        })
+export const loginThunkCreator = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(authMeThunkCreator())
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : " Some ERROr"
+        dispatch(stopSubmit("Login", {_error: message}))
+    }
 }
-export const logOutThunkCreator=()=>(dispatch)=>{
-    debugger
-    authAPI.logOut()
-        .then((response) => {
-            debugger
-            if (response.data.resultCode === 0){
 
+export const logOutThunkCreator = () => async (dispatch) => {
+    let response = await authAPI.logOut()
+            if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))
             }
-        })
 }

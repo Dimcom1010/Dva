@@ -7,10 +7,7 @@ let initialState = {
     ]
 }
 
-
 export const fotoComentReduser = (state = initialState, action)=> {
-
-
 
     return state;
 }

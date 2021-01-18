@@ -12,7 +12,6 @@ export const appReduser = (state = initialState, action) => {
 
         case INITIALIZED_SUCCESS:
             return {
-
                 ...state,
                 initialization: true
             }
@@ -25,7 +24,7 @@ export const appReduser = (state = initialState, action) => {
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS})
 
 export const initializationThunkCreator = () => (dispatch) => {
-    debugger
+
     let promise = dispatch(authMeThunkCreator())
 
     promise.then(() => {

@@ -3,10 +3,6 @@ import {fotoComentReduser} from "./fotoComentReduser";
 import {myPostReduser} from "./myPostReduser";
 import {dialogReduser} from "./dialogReduser";
 
-
-
-
-
 const ADD_NOW_POST_TEXT = 'ADD-NOW-POST-TEXT'
 const ADD_POST = 'ADD-POST';
 

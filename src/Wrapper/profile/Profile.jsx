@@ -2,7 +2,6 @@ import React from 'react';
 import Preloader from '../../Elements/preloder/preloader';
 import usersFotoNull from '../../img/UsesrFotoNull.png';
 import {Redirect} from "react-router-dom"
-import RrofileStatus from "./RrofileStatus";
 import RrofileStatusHooks from "./RrofileStatusHooks";
 
 
