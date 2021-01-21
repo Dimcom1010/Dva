@@ -1,88 +1,85 @@
-import React from "react";
+import React, {useState} from "react";
 import style from './Users.module.css'
 import usersFotoNull from '../../img/UsesrFotoNull.png'
 import {NavLink} from "react-router-dom";
 import Preloader from "../../Elements/preloder/preloader";
-import { Redirect } from "react-router-dom"
 
-const Users = (props) => {
-    debugger
+const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor}) => {
 
-    let pageCount = Math.ceil(props.totalCount / props.pageSize)
-
+    let pageCount = Math.ceil(totalCount / pageSize)
     let pages = []
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i);
-    }
+    for (let i = 1; i <= pageCount; i++) {pages.push(i);}
+    let leftLimit =  currentPage-5
+    let rightLimit = currentPage+5
+    const [page, setPage] = useState(currentPage);
 
-    if (props.isAuth===false) return <Redirect to={'/login'}/>
-    return (
 
-        <div>
+    return <>
+        <span>_totalCount_-_{totalCount}_</span>
+        <br/>
+        <span>_pageSize_-_{pageSize}_</span>
+        <br/>
+        <span>_pageCount_-_{pageCount}_</span>
+        <br/>
+        <span>_currentPage_-_{currentPage}_</span>
+        <br/>
+        <span>leftLimit-_{leftLimit}_</span>
+        <br/>
+        <span>rightLimit-_{rightLimit}_</span>
+        <br/>
 
-            {props.isPreloader ? (<Preloader/>
-            ) : (
+        { leftLimit>1 && <button onClick={()=>setPage(page-1)} >{"<<"} Suda ...</button>}
+        {pages
+            .filter (p => p >= leftLimit && p <= rightLimit)
+            .map( (p) => {
+                return  <span onClick={(e) => {
+                        onPageChangedThunkCreacor(p, pageSize)
+                    }}
+                          className={currentPage === p ? style.activPagesUsers : style.pagesUsers}>{p}
+                 </span>
+                })
+        }
+        {rightLimit<pageCount && <button onClick={()=>setPage(page+1) }>... Tuda {">>"} </button>}
+    </>
+}
 
-                <div>
-                    <span>_totalCount_-_{props.totalCount}_</span>
-                    <br/>
-                    <span>_pageSize_-_{props.pageSize}_</span>
-                    <br/>
-                    <span>_pageCount_-_{pageCount}_</span>
-                    <br/>
-                    <span>_currentPage_-_{props.currentPage}_</span>
-                    <br/>
+const Users = ({totalCount, pageSize, currentPage, ...props}) => {
+    return <>
 
-                    <div>
+        {props.isPreloader ? (<Preloader/>
+        ) : (
+            <div>
 
-                        {pages.map(p => {
-                            return (
+                <Paginator totalCount={totalCount}  pageSize={pageSize} currentPage={currentPage}
+                           onPageChangedThunkCreacor={props.onPageChangedThunkCreacor}/>
 
-                                <span
+                {props.users.map(u => <div key={u.id}>
+                        <div className={style.users}>
 
-                                    onClick={(e) => {
-                                    props.onPageChangedThunkCreacor(p, props.pageSize)   // обавление и удаление из друзей
-                                }}
-
-                                      className={props.currentPage === p ? style.activPagesUsers : style.pagesUsers}>{p}
-
-                                </span>
-
-                            )
-                        })}
-
-                    </div>
-
-                    {props.users.map(u => <div key={u.id}>
-                            <div className={style.users}>
-
-                                <NavLink to={'/profile/' + u.id}>
-                                    <img alt="img" src={u.photos.small === null ? usersFotoNull : u.photos.small}
-                                         className={style.foto}/>
-                                </NavLink>
-
-                                <div className={style.usersInfo}>
-                                    <div>id-{u.id}</div>
-                                    <div>name-{u.name}</div>
-                                    <div>uniqueUrlName-{u.uniqueUrlName}</div>
-                                    <div>status_{u.status}</div>
-
-                                    {u.followed                                            // обавление и удаление из друзей
-
-                                        ? <button disabled={props.buttonInProgress.some(id => id === u.id)} onClick={() => {
-                                            props.unFollowedThunkCreacor(u.id)
-                                        }
-                                        }>Unfollowed1</button>
-                                        : <button disabled={props.buttonInProgress.some(id => id === u.id)} onClick={() => {
-                                            props.FollowedThunkCreacor(u.id)
-                                        }}>Followed</button>}
-                                </div>
+                            <NavLink to={'/profile/' + u.id}>
+                                <img alt="img" src={u.photos.small === null ? usersFotoNull : u.photos.small}
+                                     className={style.foto}/>
+                            </NavLink>
+                            <div className={style.usersInfo}>
+                                <div>id-{u.id}</div>
+                                <div>name-{u.name}</div>
+                                <div>uniqueUrlName-{u.uniqueUrlName}</div>
+                                <div>status_{u.status}</div>
+                                {u.followed                                            // обавление и удаление из друзей
+                                    ? <button disabled={props.buttonInProgress.some(id => id === u.id)} onClick={() => {
+                                        props.unFollowedThunkCreacor(u.id)
+                                    }
+                                    }>Unfollowed1</button>
+                                    : <button disabled={props.buttonInProgress.some(id => id === u.id)} onClick={() => {
+                                        props.FollowedThunkCreacor(u.id)
+                                    }}>Followed</button>}
                             </div>
                         </div>
-                    )}
-                </div>
-            )}
-        </div>
-    )
+                    </div>
+                )}
+            </div>
+        )}
+    </>
+
 }
 export default Users
