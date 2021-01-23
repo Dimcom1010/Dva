@@ -1,45 +1,45 @@
-import React,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const RrofileStatusHooks =({updateUserProfileThunkCreator,propsStatus}) => {
+const RrofileStatusHooks = ({updateUserProfileThunkCreator, propsStatus}) => {
+    debugger
+    useEffect(() => {
 
-    useEffect( ()=>{
-        debugger
-            setStatus=propsStatus
-        },[propsStatus]
+            setStatus = propsStatus
+        }, [propsStatus]
     )
 
-    let [editMode,setEditMode] = useState(false)
-    let [status,setStatus] = useState(propsStatus)
+    let [editMode, setEditMode] = useState(false)
+    let [status, setStatus] = useState(propsStatus)
 
-    let activateEditMode =()=>{
-        debugger
+    let activateEditMode = () => {
+
         setEditMode(true)
     }
-    let deActivateEditMode =()=>{
-        debugger
+    let deActivateEditMode = () => {
+
         setEditMode(false)
         updateUserProfileThunkCreator(status)
 
-}
-    let onStatusChange =(e) => {
-        debugger
+    }
+    let onStatusChange = (e) => {
+
         setStatus(e.currentTarget.value)
     }
 
 
-        return (
+    return (
 
+        <div>
+            {!editMode &&
             <div>
-                {!editMode &&
-                    <div>
-                        <span onDoubleClick={activateEditMode}> {propsStatus || '----'}</span>
-                    </div>}
-                {editMode &&
-                    <div>
-                        <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status}></input>
-                    </div>}
-            </div>
-        )
+                <span onDoubleClick={activateEditMode}> {propsStatus || '----'}</span>
+            </div>}
+            {editMode &&
+            <div>
+                <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={status}></input>
+            </div>}
+        </div>
+    )
 }
 
 export default RrofileStatusHooks

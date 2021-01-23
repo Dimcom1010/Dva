@@ -51,6 +51,17 @@ export const profileAPI = {
         return (
             intance.put('profile/status/',{status:status}) // мы на сервер отправляем обыект status которые тредуется по документации
         )
+    },
+    saveFoto(photoFile){
+        const formData = new FormData()
+        formData.append("image",photoFile)
+        return (
+            intance.put('/profile/photo',formData,{
+                headers:{
+                    'Content-Type': 'multipart/from-data'
+                }
+            }) // мы на сервер отправляем обыект status которые тредуется по документации
+        )
     }
 }
 

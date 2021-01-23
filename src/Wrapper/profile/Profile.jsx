@@ -1,14 +1,13 @@
 import React from 'react';
 import Preloader from '../../Elements/preloder/preloader';
-import usersFotoNull from '../../img/UsesrFotoNull.png';
 import {Redirect} from "react-router-dom"
-import RrofileStatusHooks from "./RrofileStatusHooks";
 import ProfileInfo from "./ProfileInfo";
 
 
-const Profile = (props) => {
-    if (props.isAuth === false) return <Redirect to={'/login'}/>
+const Profile = ({isOwser,status,updateUserProfileThunkCreator,saveFotoThunkCreator,...props}) => {
     debugger
+    if (props.isAuth === false) return <Redirect to={'/login'}/>
+
     return (
 
         <div>
@@ -20,7 +19,12 @@ const Profile = (props) => {
                         <div>Статус_-_{props.profile.aboutMe} </div>
                         <div>мой VK_-_{props.profile.contacts.vk} </div>
 
-                        <ProfileInfo small={props.profile.photos.small} status={props.status} updateUserProfileThunkCreator={props.updateUserProfileThunkCreator}/>
+                        <ProfileInfo
+                            isOwser={isOwser}
+                            saveFoto={saveFotoThunkCreator}
+                            small={props.profile.photos.small}
+                            status={status}
+                            updateUserProfileThunkCreator={updateUserProfileThunkCreator}/>
 
                         <div>мой ID_-_{props.profile.userId} </div>
 
