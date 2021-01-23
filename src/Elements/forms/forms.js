@@ -30,3 +30,15 @@ export const Input =({input,meta, ...props})=>{
         </div>
     )
 }
+
+export const range =({min,max,step, ...props})=>{
+    debugger
+    return (
+        <div >
+
+            <input type="range" min={min} max={max} step={step}/>
+            <br/>
+
+        </div>
+    )
+}
