@@ -1,21 +1,28 @@
 import React,{useState,useEffect} from 'react';
 
 const RrofileStatusHooks =({updateUserProfileThunkCreator,propsStatus}) => {
-    let [editMode,setEditMode] = useState(false)
-    let [status,setStatus] = useState(propsStatus)
+
     useEffect( ()=>{
-        setStatus=propsStatus
+        debugger
+            setStatus=propsStatus
         },[propsStatus]
     )
+
+    let [editMode,setEditMode] = useState(false)
+    let [status,setStatus] = useState(propsStatus)
+
     let activateEditMode =()=>{
+        debugger
         setEditMode(true)
     }
     let deActivateEditMode =()=>{
+        debugger
         setEditMode(false)
         updateUserProfileThunkCreator(status)
 
 }
     let onStatusChange =(e) => {
+        debugger
         setStatus(e.currentTarget.value)
     }
 

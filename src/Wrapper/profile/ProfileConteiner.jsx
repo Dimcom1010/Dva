@@ -13,6 +13,19 @@ import {compose} from "redux";
 class ProfileAPIConteiner extends React.Component {
 
     componentDidMount() {
+
+        let id = this.props.match.params.userId
+        if (!id) {
+            id = this.props.userId
+            if (!id){
+                this.props.history.push('/login')
+            }
+        } // в скобках id ользователя который сейчас в строке Http
+
+        this.props.getUserProfileThunkCreator(id)
+        this.props.getStatusProfileThunkCreator(id)
+    }
+    componentDidUpdate () {
         debugger
         let id = this.props.match.params.userId
         if (!this.props.match.params.userId) {

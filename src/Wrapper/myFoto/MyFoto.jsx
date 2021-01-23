@@ -2,7 +2,7 @@ import React from 'react';
 import './MyFoto.css';
 import {Redirect} from "react-router-dom";
 
-
+let imge = "./Foto/Foto_"
 
 const Foto = (props) => {
 
@@ -10,7 +10,7 @@ const Foto = (props) => {
         <div>
             <div className="conteinerFoto">
                 <div className="foto">
-                    <img className="foto" src={"./Foto/Foto_" + props.fotoId + ".jpg"} alt="s"/>
+                    <img className="foto" src={imge + props.fotoId + ".jpg"} alt="s"/>
                 </div>
                 <a href=" https://nikuda.md">
                     <div className="buttonlikes">{props.fotolikes} </div>

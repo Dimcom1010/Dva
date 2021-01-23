@@ -3,6 +3,7 @@ import Preloader from '../../Elements/preloder/preloader';
 import usersFotoNull from '../../img/UsesrFotoNull.png';
 import {Redirect} from "react-router-dom"
 import RrofileStatusHooks from "./RrofileStatusHooks";
+import ProfileInfo from "./ProfileInfo";
 
 
 const Profile = (props) => {
@@ -18,12 +19,11 @@ const Profile = (props) => {
                         <h1>I'm {props.profile.fullName} </h1>
                         <div>Статус_-_{props.profile.aboutMe} </div>
                         <div>мой VK_-_{props.profile.contacts.vk} </div>
-                        <img alt="img" src={props.profile.photos.small === null
-                            ? usersFotoNull
-                            : props.profile.photos.small}/>
+
+                        <ProfileInfo small={props.profile.photos.small} status={props.status} updateUserProfileThunkCreator={props.updateUserProfileThunkCreator}/>
+
                         <div>мой ID_-_{props.profile.userId} </div>
-                        <RrofileStatusHooks propsStatus={props.status}
-                                       updateUserProfileThunkCreator={props.updateUserProfileThunkCreator}/>
+
                     </div>
                 </div>
 
