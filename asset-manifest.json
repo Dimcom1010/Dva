@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Dva/static/css/main.ad870d62.chunk.css",
+    "main.js": "/Dva/static/js/main.52998911.chunk.js",
+    "main.js.map": "/Dva/static/js/main.52998911.chunk.js.map",
+    "runtime-main.js": "/Dva/static/js/runtime-main.c3be3b46.js",
+    "runtime-main.js.map": "/Dva/static/js/runtime-main.c3be3b46.js.map",
+    "static/js/2.de79ac51.chunk.js": "/Dva/static/js/2.de79ac51.chunk.js",
+    "static/js/2.de79ac51.chunk.js.map": "/Dva/static/js/2.de79ac51.chunk.js.map",
+    "static/js/3.af5127ba.chunk.js": "/Dva/static/js/3.af5127ba.chunk.js",
+    "static/js/3.af5127ba.chunk.js.map": "/Dva/static/js/3.af5127ba.chunk.js.map",
+    "index.html": "/Dva/index.html",
+    "static/css/main.ad870d62.chunk.css.map": "/Dva/static/css/main.ad870d62.chunk.css.map",
+    "static/js/2.de79ac51.chunk.js.LICENSE.txt": "/Dva/static/js/2.de79ac51.chunk.js.LICENSE.txt",
+    "static/media/preloder.34cff5f3.gif": "/Dva/static/media/preloder.34cff5f3.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c3be3b46.js",
+    "static/js/2.de79ac51.chunk.js",
+    "static/css/main.ad870d62.chunk.css",
+    "static/js/main.52998911.chunk.js"
+  ]
+}
