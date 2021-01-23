@@ -22,7 +22,7 @@ const Profile = (props) => {
                             ? usersFotoNull
                             : props.profile.photos.small}/>
                         <div>мой ID_-_{props.profile.userId} </div>
-                        <RrofileStatusHooks status={props.status}
+                        <RrofileStatusHooks propsStatus={props.status}
                                        updateUserProfileThunkCreator={props.updateUserProfileThunkCreator}/>
                     </div>
                 </div>
