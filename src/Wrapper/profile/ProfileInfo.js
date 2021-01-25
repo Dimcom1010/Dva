@@ -16,8 +16,11 @@ const ProfileInfo = ({small, status, updateUserProfileThunkCreator, isOwser,save
             : small}/>
 
         <br/>{isOwser && <input type={"file"} onChange={onMainFotoSelected}/>}
-        <RrofileStatusHooks propsStatus={status}
-                            updateUserProfileThunkCreator={updateUserProfileThunkCreator}/>
+        <RrofileStatusHooks
+                            propsStatus={status}
+                            updateUserProfileThunkCreator={updateUserProfileThunkCreator}
+                            isOwser={isOwser}
+        />
     </>
 
 }

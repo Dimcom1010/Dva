@@ -25,13 +25,13 @@ class ProfileAPIConteiner extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+
         this.refreshProfile()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        debugger
-        if (this.props.match.params.userId != prevProps.match.params.userId) {
+
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile()
         }
     }
@@ -54,7 +54,8 @@ class ProfileAPIConteiner extends React.Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    isAuth: state.auth.isAuth
 
 })
 

@@ -20,7 +20,7 @@ export const profileReduser = (state = initialState, action) => {
         }
 
         case SET_STATUS: {
-
+debugger
             return{
                 ...state,
                 status: action.status
@@ -28,7 +28,7 @@ export const profileReduser = (state = initialState, action) => {
         }
 
         case SET_FOTO: {
-debugger
+
             return{
                 ...state,
                 profile: {...state.profile, photos:action.photos}
@@ -51,6 +51,7 @@ export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
 }
 
 export const updateUserProfileThunkCreator = (status) => async (dispatch) => {
+    debugger
     let response = await profileAPI.updateStatus(status)
             if (response.data.resultCode === 0) {
                 dispatch(setStatus(status))}

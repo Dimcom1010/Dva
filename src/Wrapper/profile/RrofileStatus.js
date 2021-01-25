@@ -4,7 +4,7 @@ class RrofileStatus extends React.Component {
 
     state = {                     // создани локальный статус для хранения временных данных во время изменения статуса
         editMode: false,
-        status:this.props.status
+        status:this.props.propsStatus
     }
 
     activateEditMode = () => {
@@ -23,6 +23,7 @@ class RrofileStatus extends React.Component {
     }
 
     onStatusChange =(e) => {
+        debugger
         this.setState({
             status:e.currentTarget.value
         })
@@ -30,9 +31,9 @@ class RrofileStatus extends React.Component {
     }
 componentDidUpdate(prevProps, prevState, snapshot) {
        debugger
-    if (prevProps.status!==this.props.status)
+    if (prevProps.propsStatus!==this.props.propsStatus)
     {this.setState({
-        status: this.state.status
+        status: this.props.propsStatus
     })
     }
 
@@ -44,11 +45,14 @@ componentDidUpdate(prevProps, prevState, snapshot) {
             <div>
                 {!this.state.editMode &&
                     <div>
-                        <span onDoubleClick={this.activateEditMode}> {this.props.status || '----'}</span>
+                        <span onDoubleClick={(this.props.isOwser? this.activateEditMode: null)}> {this.props.propsStatus || '----'}</span>
                     </div>}
                 {this.state.editMode &&
                     <div>
-                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deActivateEditMode} value={this.state.status}></input>
+                        <input onChange={this.onStatusChange}
+                               autoFocus={true}
+                               onBlur={this.deActivateEditMode}
+                               value={this.state.status}></input>
                     </div>}
             </div>
         )
