@@ -64,7 +64,7 @@ const BlockData = ({profile, isOwser, activateEditMode}) => {
 
 const Contact = ({contactTitel, contactValue}) => {
     return <>
-        <div className={styleForm.inputWraper}><b>{contactTitel}</b> <a href={contactValue}>{contactValue} </a>
+        <div className={styleForm.inputWraper}><b>{contactTitel}</b> <a href={contactValue}>{contactValue}</a>
         </div>
     </>
 }
