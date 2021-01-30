@@ -1,4 +1,11 @@
+.inputWraper{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
 
+    margin:0 0 10px 10px  ;
+
+}
 .formControl input
 {
     color: #303030;

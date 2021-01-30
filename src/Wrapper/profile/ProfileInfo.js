@@ -3,7 +3,7 @@ import usersFotoNull from "../../img/UsesrFotoNull.png";
 import RrofileStatusHooks from "./RrofileStatusHooks";
 
 
-const ProfileInfo = ({small, status, updateUserProfileThunkCreator, isOwser,saveFoto, ...props}) => {
+const ProfileInfo = ({small, status, updateUserProfileThunkCreator, isOwser,saveFoto,profile, ...props}) => {
     const onMainFotoSelected =(e)=>{
         if (e.target.files.length) {
             saveFoto(e.target.files[0])
@@ -20,6 +20,7 @@ const ProfileInfo = ({small, status, updateUserProfileThunkCreator, isOwser,save
                             propsStatus={status}
                             updateUserProfileThunkCreator={updateUserProfileThunkCreator}
                             isOwser={isOwser}
+                            profile={profile}
         />
     </>
 

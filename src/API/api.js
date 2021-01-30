@@ -40,18 +40,24 @@ export const profileAPI = {
     },
 
     getStatus(userId){
-
         return (
             intance.get('profile/status/'+userId)
         )
     },
 
     updateStatus(status){
-
         return (
             intance.put('profile/status/',{status:status}) // мы на сервер отправляем обыект status которые тредуется по документации
         )
     },
+
+    saveProfile(formData){
+        debugger
+        return (
+            intance.put('/profile',formData) // мы на сервер отправляем обыект status которые тредуется по документации
+        )
+    },
+
     saveFoto(photoFile){
         const formData = new FormData()
         formData.append("image",photoFile)

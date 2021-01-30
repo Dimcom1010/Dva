@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import Profile from "./Profile";
 import {
     getStatusProfileThunkCreator,
-    getUserProfileThunkCreator, saveFotoThunkCreator,
+    getUserProfileThunkCreator, saveFotoThunkCreator, saveProfilesThunkCreator,
     updateUserProfileThunkCreator
 } from "../../Redux/profileReduser";
 import {compose} from "redux";
@@ -60,7 +60,12 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {getUserProfileThunkCreator, getStatusProfileThunkCreator, updateUserProfileThunkCreator,saveFotoThunkCreator}), // добавляет в пропсы диспатчи и стэёт
+    connect(mapStateToProps,
+        {getUserProfileThunkCreator,
+            getStatusProfileThunkCreator,
+            updateUserProfileThunkCreator,
+            saveFotoThunkCreator,
+            saveProfilesThunkCreator}), // добавляет в пропсы диспатчи и стэёт
     withRouter,                                     // добавляет в пропсы настройки роутера
     //withAuthComponentHOC                          // добавляет регистрационную аутнетификацию с перенаправлением на логин
 )

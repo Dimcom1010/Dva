@@ -44,7 +44,6 @@ export const authMeThunkCreator = () => async (dispatch) => {
 
     let response = await authAPI.me()            // возвращаем промис для аутентификации
     if (response.resultCode === 0) {
-        debugger
         let {id, login, email} = response.data
         dispatch(setAuthUserData(id, login, email, true))
     }

@@ -4,8 +4,8 @@ import {Redirect} from "react-router-dom"
 import ProfileInfo from "./ProfileInfo";
 import ProfileInfoContacts from "./ProfileInfoContacts";
 
-const Profile = ({isOwser, status, updateUserProfileThunkCreator, saveFotoThunkCreator,profile,isAuth, ...props}) => {
-    debugger
+const Profile = ({isOwser, status, updateUserProfileThunkCreator, saveFotoThunkCreator,profile,isAuth,saveProfilesThunkCreator, ...props}) => {
+
     if (isAuth === false) return <Redirect to={'/login'}/>
 
     return (
@@ -19,8 +19,13 @@ const Profile = ({isOwser, status, updateUserProfileThunkCreator, saveFotoThunkC
                         saveFoto={saveFotoThunkCreator}
                         small={profile.photos.large }
                         status={status}
-                        updateUserProfileThunkCreator={updateUserProfileThunkCreator}/>
-                    <ProfileInfoContacts profile={profile}/>
+                        updateUserProfileThunkCreator={updateUserProfileThunkCreator}
+                        profile={profile}/>
+
+                    <ProfileInfoContacts profile={profile}
+                                         isOwser={isOwser}
+                                         profile={profile}
+                                         saveProfilesThunkCreator={saveProfilesThunkCreator}/>
                 </div>
             )}
         </div>

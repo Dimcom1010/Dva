@@ -1,60 +1,72 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import style from "./Profile.module.css";
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../../Elements/forms/forms";
+import styleForm from "../../Elements/forms/Forms.module.css"
+import BlockDataReduxForm from "./BlockDataForm";
 
 
-const ProfileInfoContacts = ({profile})=>{
+const ProfileInfoContacts = ({profile, isOwser,saveProfilesThunkCreator}) => {
+    debugger
+    let [editMode, setEditMode] = useState(false)
+    let activateEditMode = () => {
+        setEditMode(true)
+    }
+
+    let onSubmit = (formData) => {
+        debugger
+        saveProfilesThunkCreator(formData)
+        setEditMode(false)
+        console.log(formData)
+
+
+    }
+
     return <div className={style.userInfo}>
 
-        <div><b>userId </b> {profile.userId} </div>
-        <div><b>lookingForAJob</b>_-_{profile.lookingForAJob? "Yes": "No" } </div>
-        <div><b>lookingForAJobDescription</b>_-_{profile.lookingForAJobDescription} </div>
-        <div><b>fullName</b>_-_{profile.fullName} </div>
+        {!editMode && <>
+            < BlockData profile={profile}
+                        isOwser={isOwser}
+                        activateEditMode={activateEditMode}/>
 
-        <div><b>github</b>_-_{profile.contacts.github} </div>
-        <div><b>мой VK</b>_-_{profile.contacts.vk} </div>
-        <div><b>facebook</b>_-_{profile.contacts.facebook} </div>
-        <div><b>instagram</b>_-_{profile.contacts.instagram} </div>
-        <div><b>twitter</b>_-_{profile.contacts.twitter} </div>
-        <div><b>website</b>_-_{profile.contacts.website} </div>
-        <div><b>youtube</b>_-_{profile.contacts.youtube} </div>
-        <div><b>mainLink</b>_-_{profile.contacts.mainLink} </div>
+            <div><b>Contacts</b>:
 
-        <div><b>Contacts</b>_-_{Object.keys (profile.contacts).map(key=>{
-            return <Contact contactTitel={key} contactValue={profile.contacts[key]}></Contact>
-        }) }
-        </div>
+                {Object.keys(profile.contacts).map(key => {
+                return <Contact contactTitel={key}
+                                contactValue={profile.contacts[key]}/>
 
-
-        <ReduxProfileInfoContactsForm initionValues={profile.contacts}/>
+            })}
+            </div>
+        </>
+        }
+        {editMode && <BlockDataReduxForm onSubmit={onSubmit}
+                                         initialValues={profile}
+                                         profile={profile}/>}
     </div>
 
 }
-const Contact = ({contactTitel, contactValue})=>{
-    return <div><b>{contactTitel}</b>" " - " " {contactValue} </div>
-}
-
-
-
-const ProfileInfoContactsForm = (props) => {
-
+const BlockData = ({profile, isOwser, activateEditMode}) => {
     return <>
-        <form onSubmit={props.handleSubmit}>
+        {isOwser && <button onClick={activateEditMode}>Изменить</button>}
+        <div className={styleForm.inputWraper}>
+            <b>fullName</b><>{profile.fullName}</>
+        </div>
+        <div className={styleForm.inputWraper}>
+            <b>aboutMe </b> <>{profile.userId}</>
+        </div>
+        <div className={styleForm.inputWraper}>
+            <b>lookingForAJob</b><>{profile.lookingForAJob ? "Yes" : "No"}</>
+        </div>
+        {profile.lookingForAJob &&
+        <div className={styleForm.inputWraper}>
+            <b>lookingForAJobDescription</b>{profile.lookingForAJobDescription} </div>}
 
-            <Field name={"github"} component={Input}/>
-            <Field name={"vk"} component={Input}/>
-            <Field name={"facebook"} component={Input}/>
-            <Field name={"instagram"} component={Input}/>
-            <Field name={"twitter"} component={Input}/>
-            <Field name={"website"} component={Input}/>
-            <Field name={"youtube"} component={Input}/>
-            <Field name={"mainLink"} component={Input}/>
-
-
-        </form>
     </>
 }
-const ReduxProfileInfoContactsForm = reduxForm({form: 'ProfileInfoContacts'})(ProfileInfoContactsForm)
+
+const Contact = ({contactTitel, contactValue}) => {
+    return <>
+        <div className={styleForm.inputWraper}><b>{contactTitel}</b> <a href={contactValue}>{contactValue} </a>
+        </div>
+    </>
+}
 
 export default ProfileInfoContacts

@@ -16,21 +16,17 @@ import Preloader from "./Elements/preloder/preloader";
 
 class App extends React.Component {
     componentDidMount() {
-        debugger
-
-        this.props.initializationThunkCreator()
+         this.props.initializationThunkCreator()
     }
 
     render() {
-
-
         this.initialization ? console.log("Вы авторизованы") : console.log("Вы не авторизованы")
 
         let addRefBurger = React.createRef(); //создание ссылки для елемента бургер
         const cons = () => {
             console.log('действие при нажатии на бурер')
         }
-        debugger
+
 
         if (!this.props.initialization) {
             return <Preloader/>
@@ -38,8 +34,6 @@ class App extends React.Component {
 
 
         return (
-
-
             <div className="wrapper">
                 <div className="header">
                     <NavLink to='/profile'>                                {/*навигация*/}

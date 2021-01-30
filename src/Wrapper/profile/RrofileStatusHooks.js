@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 
 
-const RrofileStatusHooks = ({updateUserProfileThunkCreator, propsStatus,isOwser}) => {
+const RrofileStatusHooks = ({updateUserProfileThunkCreator, propsStatus,isOwser,profile}) => {
 
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(propsStatus)
@@ -27,9 +27,10 @@ const RrofileStatusHooks = ({updateUserProfileThunkCreator, propsStatus,isOwser}
     return (
 
         <div>
+            <b>ID:</b>{profile.userId}
             {!editMode &&
             <div>
-                <span onDoubleClick={(isOwser? activateEditMode: null)}> {propsStatus || '----'}</span>
+                <b>Status:</b><span onDoubleClick={(isOwser? activateEditMode: null)}> {propsStatus || '----'}</span>
             </div>}
             {editMode &&
             <div>
