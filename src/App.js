@@ -3,7 +3,6 @@ import {NavLink, Route} from "react-router-dom";
 import React from "react";
 import MyFriendsConteiner from './Wrapper/myFriends/MyFriendsConteiner';
 import MyFotoContainer from './Wrapper/myFoto/MyFotoContainer';
-import ClassComponentConteiner from './Wrapper/classComponent/ClassComponentConteiner';
 import UsersConteiner from './Wrapper/users/UsersConteiner';
 import ProfileConteiner from './Wrapper/profile/ProfileConteiner';
 import Login from "./Wrapper/Login/Login";
@@ -12,6 +11,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializationThunkCreator} from "./Redux/appReduser";
 import Preloader from "./Elements/preloder/preloader";
+import CalculatorConteiner from "./Wrapper/classComponent/ClassComponentConteiner";
 
 
 class App extends React.Component {
@@ -47,8 +47,8 @@ class App extends React.Component {
                     </NavLink>
 
 
-                    <NavLink to='/classComp'>
-                        <div className="navBar_Item">Class Component</div>
+                    <NavLink to='/Calculator'>
+                        <div className="navBar_Item">Calculator</div>
                     </NavLink>
                     <NavLink to='/users'>
                         <div className="navBar_Item">Users</div>
@@ -76,7 +76,7 @@ class App extends React.Component {
                         <Route exact path='/MyFriends' render={() => <MyFriendsConteiner store={this.props.store}/>}/>
 
                         <Route exact path='/MyFoto' render={() => <MyFotoContainer store={this.props.store}/>}/>
-                        <Route exact path='/classComp' render={() => <ClassComponentConteiner/>}/>
+                        <Route exact path='/Calculator' render={() => <CalculatorConteiner/>}/>
                         <Route exact path='/users' render={() => <UsersConteiner/>}/>
                         <Route exact path='/login' render={() => <Login/>}/>
                     </div>

@@ -50,7 +50,7 @@ const BlockData = ({profile, isOwser, activateEditMode}) => {
             <b>fullName</b><>{profile.fullName}</>
         </div>
         <div className={styleForm.inputWraper}>
-            <b>aboutMe </b> <>{profile.userId}</>
+            <b>aboutMe </b> <>{profile.aboutMe}</>
         </div>
         <div className={styleForm.inputWraper}>
             <b>lookingForAJob</b><>{profile.lookingForAJob ? "Yes" : "No"}</>
@@ -58,14 +58,13 @@ const BlockData = ({profile, isOwser, activateEditMode}) => {
         {profile.lookingForAJob &&
         <div className={styleForm.inputWraper}>
             <b>lookingForAJobDescription</b>{profile.lookingForAJobDescription} </div>}
-
     </>
 }
 
 const Contact = ({contactTitel, contactValue}) => {
     return <>
-        <div className={styleForm.inputWraper}><b>{contactTitel}</b> <a href={contactValue}>{contactValue}</a>
-        </div>
+        {contactValue && <div className={styleForm.inputWraper}><b>{contactTitel}</b> <a href={contactValue}>{contactValue}</a>
+        </div>}
     </>
 }
 

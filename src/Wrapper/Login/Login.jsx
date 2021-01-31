@@ -1,54 +1,13 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {maxLength, required} from "../../utils/validation/validate";
-import {Input} from "../../Elements/forms/forms";
-import {connect} from "react-redux";
 import {loginThunkCreator, logOutThunkCreator} from "../../Redux/authReduser";
-import stule from "../../Elements/forms/Forms.module.css"
+import ReduxLoginForm from "./ReduxLoginForm";
+import {connect} from "react-redux";
+import ReduxLogOutForm from "./ReduxLogOutForm";
 
-const maxLength20 = maxLength(20)
 
-const LoginForm = ({handleSubmit, ...props}) => {
 
-    return <form onSubmit={handleSubmit}>
-                <div>
-                    <Field name={"email"} component={Input} placeholder={"Login"}
-                           validate={[required, maxLength20]}/>
-                </div>
-                <div>
-                    <Field name={"password"} component={Input} placeholder={"Password"} type={"password"}
-                           validate={[required, maxLength20]}/>
-                </div>
-                {props.error && <div className={stule.comenErrors}> {props.error} </div>}
-                <div>
-                    <Field name={"rememberMe"} component={Input} type={"checkbox"}/> Remember Me
-                </div>
 
-                <div>
-                    <button>Log in</button>
-                </div>
-            </form>
-
-}
-
-const ReduxLoginForm = reduxForm({form: 'Login'})(LoginForm)
-
-const LogOutForm = (props) => {
-
-    return <>
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <h4>Вы залогинены</h4>
-                <h3>Хотите выйти?</h3>
-                <div>
-                    <button>Log Out</button>
-                </div>
-            </div>
-        </form>
-    </>
-}
-
-const ReduxLogOutForm = reduxForm({form: 'Login'})(LogOutForm)
 
 const Login = (props) => {
 
@@ -67,12 +26,12 @@ const Login = (props) => {
             <div>
                 {!props.isAuth ?
                     <div>
-                        <h1>Login</h1>
+                        Login
                         <ReduxLoginForm onSubmit={logInSubmit}/>
                     </div>
                     :
                     <div>
-                        <h1>LogOut</h1>
+                        LogOut
                         <ReduxLogOutForm onSubmit={logOutSubmit}/>
                     </div>
                 }

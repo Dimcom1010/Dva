@@ -1,55 +1,55 @@
-import React from 'react';
-import mcss from './ClassComponent.module.css';
-import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../Elements/forms/forms";
+import React, {useState} from 'react';
 
 
+const Calculator = (props) => {
 
-/*let maxLength10 = maxLength(10)
-let maxLength5 = maxLength(5)*/
+    let [dozens, addDozens] = useState(0)
+    let [drob, addDrob] = useState(1)
+    let displey=0
 
-const Questionnaire = (props) => {
+    let summ = (x) =>{
+        addDozens(dozens*10+x)
+        addDrob(drob*10)
+    }
+    let tochka=()=>{
+        addDrob(1)
+    }
+    let itog=()=>{
+        displey = dozens/drob
+
+    }
+
+    let b="12364.215648"
+    console.log(b)
+    let b2=+b
+    console.log(b2)
+
+
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div><Field name={'lastName'} placeholder={'Фамилия'} component={'input'} ></Field></div>
-            <div><Field name={'Name'} placeholder={'Имя'} component={'input'} ></Field></div>
-            <div><Field name={'fatherName'} placeholder={'Отчество'} component={'input'} ></Field></div>
-            <div><Field name={'Sity'} placeholder={'Город'} component={'input'} ></Field></div>
-            <div><Field name={'aboutMe'} placeholder={'С себе'} component={Textarea} ></Field></div>
-            <div>
-                <button>Отправить</button>
-            </div>
-        </form>
-    )}
+        <>
 
-const QuestionnaireForm = reduxForm({form: 'Questionnaire'})(Questionnaire)
-
-class ClassComponent extends React.Component {
-    plus = () => {this.props.plus()};
-    minus = () => {this.props.minus()}
-
-    onClick = (value) => {
-        debugger
-        this.props.sendQuestionnaire(value)
-    }
-
-    render() {
-        return <div>
-            <div><h1>Class Component Questionnaire</h1></div>
-            <div>
-                <div className={mcss.foto}>{this.props.foto}</div>
-                <div>{this.props.status}{this.props.itog}</div>
-                <button className={mcss.button} onClick={this.minus}>-1</button>
-                <button className={mcss.button} onClick={this.plus}>+1</button>
-
-                <QuestionnaireForm onSubmit={this.onClick}/>
-            </div>
-
-
-        </div>
-
-    }
+            <button onClick={() => summ(1)}>1</button>
+            <button onClick={() => summ(2)}>2</button>
+            <button onClick={() => summ(3)}>3</button>
+            <br/>
+            <button onClick={() => summ(4)}>4</button>
+            <button onClick={() => summ(5)}>5</button>
+            <button onClick={() => summ(6)}>6</button>
+            <br/>
+            <button onClick={() => summ(7)}>7</button>
+            <button onClick={() => summ(8)}>8</button>
+            <button onClick={() => summ(9)}>9</button>
+            <button onClick={() => summ(0)}>0</button>
+            <br/>
+            <button onClick={() => tochka()}>,</button>
+            {/*            <button onClick={() => action("*")}>x</button>
+            <button onClick={() => action("+")}>+</button>
+            <button onClick={() => action("-")}>-</button>
+            <button onClick={() => action("/")}>/</button>*/}
+            <button onClick={() => itog()}>=</button>
+        </>
+    )
 }
 
-export default ClassComponent
+export default Calculator
 

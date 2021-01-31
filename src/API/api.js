@@ -54,7 +54,7 @@ export const profileAPI = {
     saveProfile(formData){
         debugger
         return (
-            intance.put('/profile',formData) // мы на сервер отправляем обыект status которые тредуется по документации
+            intance.put('profile',formData) // мы на сервер отправляем обыект status которые тредуется по документации
         )
     },
 
@@ -62,7 +62,7 @@ export const profileAPI = {
         const formData = new FormData()
         formData.append("image",photoFile)
         return (
-            intance.put('/profile/photo',formData,{
+            intance.put('profile/photo',formData,{
                 headers:{
                     'Content-Type': 'multipart/from-data'
                 }
@@ -83,15 +83,20 @@ export const authAPI = {
     },
 
     login( email, password, rememberMe= false ) {
-
         return intance.post(`auth/login`, {email, password, rememberMe}) //при пост запросе мы можем на сервер отправить щё и данные email,password,rememberMe,captcha
     },
 
     logOut() {
-
         return (
             intance.delete(`auth/login`)
-
         )
     },
+     captcha(){
+        return(
+            intance.get(`security/get-captcha-url`)
+        )
+     }
+
+
+
 }

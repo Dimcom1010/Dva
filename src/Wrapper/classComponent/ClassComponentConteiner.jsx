@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import ClassComponent from "./ClassComponent";
+import Calculator from "./ClassComponent";
 import {minus, plus, sendQuestionnaire} from "../../Redux/classComponentReduser";
 
 
@@ -15,6 +15,7 @@ let mapStateToProps =(state)=>{
 }
 
 
-const ClassComponentConteiner = connect (mapStateToProps, {plus,minus,sendQuestionnaire})(ClassComponent);
+const CalculatorConteiner = connect (mapStateToProps, {plus,minus,sendQuestionnaire})
+(Calculator);
 
-export default ClassComponentConteiner
+export default CalculatorConteiner
