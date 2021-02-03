@@ -24,7 +24,6 @@ const Profile = ({isOwser, status, updateUserProfileThunkCreator, saveFotoThunkC
 
                     <ProfileInfoContacts profile={profile}
                                          isOwser={isOwser}
-                                         profile={profile}
                                          saveProfilesThunkCreator={saveProfilesThunkCreator}/>
                 </div>
             )}

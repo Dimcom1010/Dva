@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import style from "./Profile.module.css";
 import styleForm from "../../Elements/forms/Forms.module.css"
 import BlockDataReduxForm from "./BlockDataForm";

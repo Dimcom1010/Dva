@@ -1,52 +1,93 @@
 import React, {useState} from 'react';
-
+import style from './ClassComponent.module.css'
 
 const Calculator = (props) => {
 
-    let [dozens, addDozens] = useState(0)
-    let [drob, addDrob] = useState(1)
-    let displey=0
+    let [number1, addnumber1] = useState("")
+    let [number, addnumber] = useState("")
+    let [isUseZpt, addIsUseZpt] = useState(false)
+    let [action, addAction] = useState(null)
+    let [actionUse, addActionUse] = useState(0)
+    let [resultValue, addresultValue] = useState(0)
 
-    let summ = (x) =>{
-        addDozens(dozens*10+x)
-        addDrob(drob*10)
+    console.log(number1);
+    console.log(number);
+    console.log(isUseZpt);
+    console.log(action);
+    console.log(actionUse);
+    console.log(resultValue)
+
+    let nubrebUse = (x) => {
+        actionUse === 1
+            ? secondNumber(x)
+            : summ(x)
     }
-    let tochka=()=>{
-        addDrob(1)
-    }
-    let itog=()=>{
-        displey = dozens/drob
-
+    let secondNumber = (x) => {
+        addIsUseZpt(false)
+        addActionUse(2)
+        summ(x)
     }
 
-    let b="12364.215648"
-    console.log(b)
-    let b2=+b
-    console.log(b2)
+    let summ = (x) => {
+        x === ","
+            ? ifZpt(x)
+            : addnumber1(number1 += x)
+    }
 
+    let ifZpt = (x) => {
+        if (x === "," && !isUseZpt) {
+            addIsUseZpt(true)
+            addnumber1(number1 += ".")
+        } else {
+            addnumber1(number1 += String(""))
+        }
+    }
+
+    let onAction = (a) => {
+        if (actionUse === 0) {
+            addAction(a)
+            addActionUse(1)
+            addnumber(number1)
+            addnumber1("")
+        } else if (actionUse === 1) {
+            addAction(a)
+        } else {
+            addnumber1(number1 += String(""))
+        }
+    }
+    const functions = {
+        '+': (x, y) => parseFloat(x) + parseFloat(y),
+        '-': (x, y) => parseFloat(x) - parseFloat(y),
+        '*': (x, y) => parseFloat(x) * parseFloat(y),
+        '/': (x, y) => parseFloat(x) / parseFloat(y)
+    };
+
+    let result = (a, x, y) => {
+        addresultValue(functions[a](x, y))
+        addnumber1("")
+        addnumber("")
+        addIsUseZpt(false)
+        addAction(null)
+        addActionUse(0)
+
+    }
+
+    let buttonsNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ","].map(x => < button key={x} className={style.button}
+                                                                               onClick={() => nubrebUse(x)}>{x}</button>)
+    let buttonsAction = ["+", "-", "*", "/"].map(x => <button key={x} className={style.button}
+                                                              onClick={() => onAction(x)}>{x}</button>)
 
     return (
         <>
-
-            <button onClick={() => summ(1)}>1</button>
-            <button onClick={() => summ(2)}>2</button>
-            <button onClick={() => summ(3)}>3</button>
-            <br/>
-            <button onClick={() => summ(4)}>4</button>
-            <button onClick={() => summ(5)}>5</button>
-            <button onClick={() => summ(6)}>6</button>
-            <br/>
-            <button onClick={() => summ(7)}>7</button>
-            <button onClick={() => summ(8)}>8</button>
-            <button onClick={() => summ(9)}>9</button>
-            <button onClick={() => summ(0)}>0</button>
-            <br/>
-            <button onClick={() => tochka()}>,</button>
-            {/*            <button onClick={() => action("*")}>x</button>
-            <button onClick={() => action("+")}>+</button>
-            <button onClick={() => action("-")}>-</button>
-            <button onClick={() => action("/")}>/</button>*/}
-            <button onClick={() => itog()}>=</button>
+            <div className={style.container1}>
+                <div>
+                    {buttonsNumbers}
+                </div>
+                <div>
+                    {buttonsAction}
+                </div>
+                <button className={style.button} onClick={() => result(action, number, number1)}>=</button>
+            </div>
         </>
     )
 }
