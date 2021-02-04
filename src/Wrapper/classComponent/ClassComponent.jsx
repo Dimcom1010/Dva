@@ -3,19 +3,20 @@ import style from './ClassComponent.module.css'
 
 const Calculator = (props) => {
 
-    let [number1, addnumber1] = useState("")
-    let [number, addnumber] = useState("")
+    let [number1, addnumber1] = useState("0")
+    let [number, addnumber] = useState("0")
     let [isUseZpt, addIsUseZpt] = useState(false)
     let [action, addAction] = useState(null)
     let [actionUse, addActionUse] = useState(0)
     let [resultValue, addresultValue] = useState(0)
 
-    console.log(number1);
-    console.log(number);
-    console.log(isUseZpt);
-    console.log(action);
-    console.log(actionUse);
-    console.log(resultValue)
+    console.log("number1", parseFloat(number1));
+    console.log("number",parseFloat(number));
+    console.log("isUseZpt",isUseZpt);
+    console.log("action",action);
+    console.log("actionUse",actionUse);
+    console.log("resultValue",resultValue)
+    console.log("______________")
 
     let nubrebUse = (x) => {
         actionUse === 1
@@ -48,7 +49,7 @@ const Calculator = (props) => {
             addAction(a)
             addActionUse(1)
             addnumber(number1)
-            addnumber1("")
+            addnumber1("0")
         } else if (actionUse === 1) {
             addAction(a)
         } else {
@@ -63,32 +64,78 @@ const Calculator = (props) => {
     };
 
     let result = (a, x, y) => {
-        addresultValue(functions[a](x, y))
-        addnumber1("")
-        addnumber("")
+        if(a) {
+            addresultValue(functions[a](x, y))
+            rec()
+        }
+    }
+    let rec=()=>{
+        addnumber1("0")
+        addnumber("0")
         addIsUseZpt(false)
         addAction(null)
         addActionUse(0)
+    }
+
+    const minPlus =()=>{
 
     }
 
-    let buttonsNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ","].map(x => < button key={x} className={style.button}
-                                                                               onClick={() => nubrebUse(x)}>{x}</button>)
-    let buttonsAction = ["+", "-", "*", "/"].map(x => <button key={x} className={style.button}
-                                                              onClick={() => onAction(x)}>{x}</button>)
-
     return (
-        <>
-            <div className={style.container1}>
-                <div>
-                    {buttonsNumbers}
-                </div>
-                <div>
-                    {buttonsAction}
-                </div>
-                <button className={style.button} onClick={() => result(action, number, number1)}>=</button>
+        <div className={style.calculator_wrapper}>
+            <div className={style.calculator_grid_body}>
+
+                <input className={style.grid_item + " " + style.item_input} type="text"/>
+
+                <span className={style.grid_item + " " + style.item_span}>Super power 2000</span>
+
+                <button className={style.grid_item} onClick={() => rec()}>C</button>
+
+                <button className={style.grid_item} onClick={() => minPlus()}>-/+</button>
+
+                <button className={style.grid_item} onClick={() => rec()}>C</button>
+
+                <button className={style.grid_item} onClick={() => rec()}>C</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(1)}>1</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(2)}>2</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(3)}>3</button>
+
+                <button className={style.grid_item} onClick={() => onAction("/")}>/</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(4)}>4</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(5)}>5</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(6)}>6</button>
+
+                <button className={style.grid_item} onClick={() => onAction("*")}>*</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(7)}>7</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(8)}>8</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(9)}>9</button>
+
+                <button className={style.grid_item} onClick={() => onAction("-")}>-</button>
+
+
+
+                <button className={style.grid_item} onClick={() => nubrebUse(0)}>0</button>
+
+                <button className={style.grid_item} onClick={() => nubrebUse(",")}>,</button>
+
+                <button className={style.grid_item} onClick={() => result(action, number, number1)}>=</button>
+
+                <button className={style.grid_item} onClick={() => onAction("+")}>+</button>
+
+
+
+
             </div>
-        </>
+        </div>
     )
 }
 

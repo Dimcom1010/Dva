@@ -1,37 +1,44 @@
-.World{
-
-}
-.human{
-
-
-}
-.foto{
-    display: block;
-    width: 100px;
-    height: 100px;
-
-    background-color: #aaaaaa;
-}
-.lockInfo{
+.calculator_wrapper {
+    position: relative;
+    width: 100%;
 
 
 }
-.name{
-    display: block;
-    width: 500px;
-    height: 40px;
-    text-align: left;
-    background-color: #aaaaaa;
+
+.calculator_grid_body {
+    display: grid;
+
+    max-width: 350px;
+    margin: auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+    "inp inp inp inp"
+    "sp  sp  sp  sp "
 }
-.status{
-    display: block;
-    background-color: #aaaaaa;
-    text-align: left;
+
+.grid_item {
+
+    text-align: center;
+    border: 2px dashed rgba(255, 0, 255, 0.2);
+    padding: 15px;
+    font-size: 30px;
+    margin: 2px;
 }
-.button{
-    display: block;
-    width: 70px;
-    height: 30px;
-    background-color: #aaaaaa;
+
+
+
+.item_input {
+    grid-area: inp;
+    font-size: 20px;
+
+}
+
+.item_span {
+    grid-area: sp;
+/*    background-color: antiquewhite;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;*/
 }
 
