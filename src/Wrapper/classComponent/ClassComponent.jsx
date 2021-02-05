@@ -18,24 +18,24 @@ const Calculator = (props) => {
     console.log("resultValue",resultValue)
     console.log("______________")
 
-    let nubrebUse = (x) => {
+    const nubrebUse = (x) => {
         actionUse === 1
             ? secondNumber(x)
             : summ(x)
     }
-    let secondNumber = (x) => {
+    const secondNumber = (x) => {
         addIsUseZpt(false)
         addActionUse(2)
         summ(x)
     }
 
-    let summ = (x) => {
+    const summ = (x) => {
         x === ","
             ? ifZpt(x)
             : addnumber1(number1 += x)
     }
 
-    let ifZpt = (x) => {
+    const ifZpt = (x) => {
         if (x === "," && !isUseZpt) {
             addIsUseZpt(true)
             addnumber1(number1 += ".")
@@ -44,7 +44,7 @@ const Calculator = (props) => {
         }
     }
 
-    let onAction = (a) => {
+    const onAction = (a) => {
         if (actionUse === 0) {
             addAction(a)
             addActionUse(1)
@@ -60,16 +60,19 @@ const Calculator = (props) => {
         '+': (x, y) => parseFloat(x) + parseFloat(y),
         '-': (x, y) => parseFloat(x) - parseFloat(y),
         '*': (x, y) => parseFloat(x) * parseFloat(y),
-        '/': (x, y) => parseFloat(x) / parseFloat(y)
+        '/': (x, y) => parseFloat(y)
+                    ?parseFloat(x) / parseFloat(y)
+                    : "на ноль делить нельзя",
+        'percent': (x, y) => parseFloat(x) /100 * parseFloat(y)
     };
 
-    let result = (a, x, y) => {
+    const result = (a, x, y) => {
         if(a) {
             addresultValue(functions[a](x, y))
             rec()
         }
     }
-    let rec=()=>{
+    const rec=()=>{
         addnumber1("0")
         addnumber("0")
         addIsUseZpt(false)
@@ -77,25 +80,37 @@ const Calculator = (props) => {
         addActionUse(0)
     }
 
-    const minPlus =()=>{
-
+    const inversion =()=>{
+        addnumber1 ( String(parseFloat(number1)*(-1)) )
     }
+    const backspace= ()=>{
+        let last =String(number1).slice(-1)
+        if (last===".") {
+            addnumber1(String(number1).slice(0, -1))
+            addIsUseZpt(false)
+        } else {
+            addnumber1(String(number1).slice(0, -1))
+        }
+    }
+
+    let display = React.createRef()
+    let textDisplay=display.current.value
 
     return (
         <div className={style.calculator_wrapper}>
             <div className={style.calculator_grid_body}>
 
-                <input className={style.grid_item + " " + style.item_input} type="text"/>
+                <input className={style.grid_item + " " + style.item_input} ref={display} type="text"/ value=display>
 
                 <span className={style.grid_item + " " + style.item_span}>Super power 2000</span>
 
                 <button className={style.grid_item} onClick={() => rec()}>C</button>
 
-                <button className={style.grid_item} onClick={() => minPlus()}>-/+</button>
+                <button className={style.grid_item} onClick={() => inversion()}>-/+</button>
 
-                <button className={style.grid_item} onClick={() => rec()}>C</button>
+                <button className={style.grid_item} onClick={() => backspace()}>←</button>
 
-                <button className={style.grid_item} onClick={() => rec()}>C</button>
+                <button className={style.grid_item} onClick={() => onAction("percent")}>%</button>
 
                 <button className={style.grid_item} onClick={() => nubrebUse(1)}>1</button>
 
