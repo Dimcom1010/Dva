@@ -1,21 +1,68 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './ClassComponent.module.css'
 
 const Calculator = (props) => {
 
-    let [number1, addnumber1] = useState("0")
-    let [number, addnumber] = useState("0")
+    let [number1, addnumber1] = useState("")
+    let [number, addnumber] = useState("")
     let [isUseZpt, addIsUseZpt] = useState(false)
-    let [action, addAction] = useState(null)
+    let [action, addAction] = useState("")
     let [actionUse, addActionUse] = useState(0)
-    let [resultValue, addresultValue] = useState(0)
+    let [resultValue, addresultValue] = useState("")
+    let [displey, addDispley] = useState("0")
+
+
+    useEffect(() => {
+          if (!number1 && !number && !action && !resultValue && actionUse===0) {
+              debugger
+              addDispley("He!")
+          }else if (number1 && !number && !action && !resultValue && actionUse===0)
+              { debugger
+                  addDispley(number1)
+          }else if ( action && !resultValue)
+          { debugger
+              addDispley(`${number} ${action} ${number1}`)
+          }else if (action && resultValue && actionUse !==2)
+          { debugger
+              addDispley(resultValue)
+              addnumber(resultValue)
+              addnumber1("")
+              addresultValue("")
+
+
+          }else if (resultValue  && actionUse===2)
+          { debugger
+              addDispley(resultValue)
+              addActionUse(0)
+              addnumber1(resultValue)
+              addnumber("")
+              addresultValue("")
+          }
+
+        }, [number1,action,number,resultValue]
+    )
+
+/*
+   useEffect(() => {
+        addDispley (resultValue)
+        addActionUse(0)
+        addnumber1(resultValue)
+        }, [resultValue]
+    )
+    useEffect(() => {
+        addDispley(number1)
+        }, [number1]
+    )
+*/
+
 
     console.log("number1", parseFloat(number1));
     console.log("number",parseFloat(number));
     console.log("isUseZpt",isUseZpt);
     console.log("action",action);
     console.log("actionUse",actionUse);
-    console.log("resultValue",resultValue)
+    console.log("resultValue",resultValue);
+    console.log("displey",displey);
     console.log("______________")
 
     const nubrebUse = (x) => {
@@ -30,26 +77,38 @@ const Calculator = (props) => {
     }
 
     const summ = (x) => {
-        x === ","
-            ? ifZpt(x)
-            : addnumber1(number1 += x)
+        if (x === ",")
+            {ifZpt(x)
+            }else {
+            addnumber1(String(number1 += x))
+        }
     }
 
     const ifZpt = (x) => {
         if (x === "," && !isUseZpt) {
             addIsUseZpt(true)
-            addnumber1(number1 += ".")
+            addnumber1(String(
+                number1
+                    ?number1 += "."
+                    :number1 += "0."
+            ))
         } else {
             addnumber1(number1 += String(""))
         }
     }
 
     const onAction = (a) => {
-        if (actionUse === 0) {
+        if (actionUse === 2){
+            debugger
+            result(action, number, number1, "equals")
+            onAction(a)
+
+        }  else if (number1 && actionUse === 0) {
             addAction(a)
+            addnumber(String(number1))
+            addnumber1("")
             addActionUse(1)
-            addnumber(number1)
-            addnumber1("0")
+
         } else if (actionUse === 1) {
             addAction(a)
         } else {
@@ -61,46 +120,59 @@ const Calculator = (props) => {
         '-': (x, y) => parseFloat(x) - parseFloat(y),
         '*': (x, y) => parseFloat(x) * parseFloat(y),
         '/': (x, y) => parseFloat(y)
-                    ?parseFloat(x) / parseFloat(y)
+                    ? parseFloat(x) / parseFloat(y)
                     : "на ноль делить нельзя",
-        'percent': (x, y) => parseFloat(x) /100 * parseFloat(y)
+        '%': (x, y) => parseFloat(x) /100 * parseFloat(y)
     };
 
-    const result = (a, x, y) => {
-        if(a) {
-            addresultValue(functions[a](x, y))
-            rec()
+    const result = (a, x, y, actionFrom) => {
+
+
+        if(a && x && y && actionFrom==="equals") {
+            addresultValue(String(functions[a](x, y)))
+            addAction("")
+            addActionUse(0)
+
+        } else if(a && x && y){
+            debugger
+            addActionUse(0)
+            addresultValue(String(functions[a](x, y)))
+
+
+
         }
     }
     const rec=()=>{
-        addnumber1("0")
-        addnumber("0")
+        addnumber1("")
+        addnumber("")
         addIsUseZpt(false)
         addAction(null)
         addActionUse(0)
+        addDispley("")
+        addresultValue("")
     }
 
     const inversion =()=>{
         addnumber1 ( String(parseFloat(number1)*(-1)) )
     }
     const backspace= ()=>{
-        let last =String(number1).slice(-1)
+        let last =number1.slice(-1)
         if (last===".") {
-            addnumber1(String(number1).slice(0, -1))
+            addnumber1(number1.slice(0, -1))
             addIsUseZpt(false)
         } else {
-            addnumber1(String(number1).slice(0, -1))
+            addnumber1(number1.slice(0, -1))
         }
     }
 
-    let display = React.createRef()
-    let textDisplay=display.current.value
+ /*   let display = React.createRef()*/
+  /*  let textDisplay=display.current.value*/
 
     return (
         <div className={style.calculator_wrapper}>
             <div className={style.calculator_grid_body}>
 
-                <input className={style.grid_item + " " + style.item_input} ref={display} type="text"/ value=display>
+                <input className={style.grid_item + " " + style.dipley_input} type="text" onChange="alert(this.value)" value={displey}/>
 
                 <span className={style.grid_item + " " + style.item_span}>Super power 2000</span>
 
@@ -110,39 +182,37 @@ const Calculator = (props) => {
 
                 <button className={style.grid_item} onClick={() => backspace()}>←</button>
 
-                <button className={style.grid_item} onClick={() => onAction("percent")}>%</button>
+                <button className={style.grid_item} onClick={() => onAction("%")}>%</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(1)}>1</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("1")}>1</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(2)}>2</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("2")}>2</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(3)}>3</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("3")}>3</button>
 
                 <button className={style.grid_item} onClick={() => onAction("/")}>/</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(4)}>4</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("4")}>4</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(5)}>5</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("5")}>5</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(6)}>6</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("6")}>6</button>
 
                 <button className={style.grid_item} onClick={() => onAction("*")}>*</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(7)}>7</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("7")}>7</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(8)}>8</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("8")}>8</button>
 
-                <button className={style.grid_item} onClick={() => nubrebUse(9)}>9</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("9")}>9</button>
 
                 <button className={style.grid_item} onClick={() => onAction("-")}>-</button>
 
-
-
-                <button className={style.grid_item} onClick={() => nubrebUse(0)}>0</button>
+                <button className={style.grid_item} onClick={() => nubrebUse("0")}>0</button>
 
                 <button className={style.grid_item} onClick={() => nubrebUse(",")}>,</button>
 
-                <button className={style.grid_item} onClick={() => result(action, number, number1)}>=</button>
+                <button className={style.grid_item} onClick={() => result(action, number, number1,"equals")}>=</button>
 
                 <button className={style.grid_item} onClick={() => onAction("+")}>+</button>
 

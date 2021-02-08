@@ -1,8 +1,6 @@
 .calculator_wrapper {
     position: relative;
     width: 100%;
-
-
 }
 
 .calculator_grid_body {
@@ -12,33 +10,29 @@
     margin: auto;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-    "inp inp inp inp"
-    "sp  sp  sp  sp "
+    "dipley dipley dipley dipley"
+    "spanText  spanText  spanText  spanText "
+
 }
+
+.dipley_input{
+    width: 100%;
+    background: #aaaaaa;
+    grid-area: dipley;
+}
+
+
 
 .grid_item {
-
     text-align: center;
-    border: 2px dashed rgba(255, 0, 255, 0.2);
+    border: 2px dashed rgba(100, 100, 255, 0.2);
     padding: 15px;
     font-size: 30px;
-    margin: 2px;
-}
-
-
-
-.item_input {
-    grid-area: inp;
-    font-size: 20px;
 
 }
 
 .item_span {
-    grid-area: sp;
-/*    background-color: antiquewhite;
-    grid-row-start: 1;
-    grid-row-end: 4;
-    grid-column-start: 2;
-    grid-column-end: 3;*/
+    grid-area: spanText;
+
 }
 
