@@ -39,12 +39,12 @@ class App extends React.Component {
                     <NavLink to='/profile'>                                {/*навигация*/}
                         <div className="navBar_Item">Profile</div>
                     </NavLink>
-                    <NavLink to='/myFriends'>
+{/*                    <NavLink to='/myFriends'>
                         <div className="navBar_Item">My friends</div>
                     </NavLink>
                     <NavLink to='/myFoto'>
                         <div className="navBar_Item">My foto</div>
-                    </NavLink>
+                    </NavLink>*/}
 
 
                     <NavLink to='/Calculator'>
@@ -73,9 +73,9 @@ class App extends React.Component {
                         <Route exact path='/profile' render={() => <ProfileConteiner/>}/>
                         <Route exact path='/profile/:userId' render={() => <ProfileConteiner/>}/>
 
-                        <Route exact path='/MyFriends' render={() => <MyFriendsConteiner store={this.props.store}/>}/>
+{/*                        <Route exact path='/MyFriends' render={() => <MyFriendsConteiner store={this.props.store}/>}/>
 
-                        <Route exact path='/MyFoto' render={() => <MyFotoContainer store={this.props.store}/>}/>
+                        <Route exact path='/MyFoto' render={() => <MyFotoContainer store={this.props.store}/>}/>*/}
                         <Route exact path='/Calculator' render={() => <CalculatorConteiner/>}/>
                         <Route exact path='/users' render={() => <UsersConteiner/>}/>
                         <Route exact path='/login' render={() => <Login/>}/>

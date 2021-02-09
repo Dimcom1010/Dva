@@ -25,12 +25,10 @@ const Login = (props) => {
             <div>
                 {!props.isAuth ?
                     <div>
-                        Login
                         <ReduxLoginForm onSubmit={logInSubmit}/>
                     </div>
                     :
                     <div>
-                        LogOut
                         <ReduxLogOutForm onSubmit={logOutSubmit}/>
                     </div>
                 }
