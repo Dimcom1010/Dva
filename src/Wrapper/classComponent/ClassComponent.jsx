@@ -13,8 +13,9 @@ const Calculator = (props) => {
 
 
     useEffect(() => {
+        debugger
           if (!number1 && !number && !action && !resultValue && actionUse===0) {
-              debugger
+
               addDispley("He!")
           }else if (number1 && !number && !action && !resultValue && actionUse===0)
               { debugger
@@ -28,9 +29,7 @@ const Calculator = (props) => {
               addnumber(resultValue)
               addnumber1("")
               addresultValue("")
-
-
-          }else if (resultValue  && actionUse===2)
+          }else if (!action && resultValue  && actionUse===0)
           { debugger
               addDispley(resultValue)
               addActionUse(0)
@@ -38,24 +37,8 @@ const Calculator = (props) => {
               addnumber("")
               addresultValue("")
           }
-
-        }, [number1,action,number,resultValue]
+        }, [ number1,action,number,resultValue, actionUse]
     )
-
-/*
-   useEffect(() => {
-        addDispley (resultValue)
-        addActionUse(0)
-        addnumber1(resultValue)
-        }, [resultValue]
-    )
-    useEffect(() => {
-        addDispley(number1)
-        }, [number1]
-    )
-*/
-
-
     console.log("number1", parseFloat(number1));
     console.log("number",parseFloat(number));
     console.log("isUseZpt",isUseZpt);
@@ -100,8 +83,9 @@ const Calculator = (props) => {
     const onAction = (a) => {
         if (actionUse === 2){
             debugger
-            result(action, number, number1, "equals")
-            onAction(a)
+            result(action, number, number1, a)
+
+
 
         }  else if (number1 && actionUse === 0) {
             addAction(a)
@@ -116,6 +100,7 @@ const Calculator = (props) => {
         }
     }
     const functions = {
+
         '+': (x, y) => parseFloat(x) + parseFloat(y),
         '-': (x, y) => parseFloat(x) - parseFloat(y),
         '*': (x, y) => parseFloat(x) * parseFloat(y),
@@ -126,19 +111,24 @@ const Calculator = (props) => {
     };
 
     const result = (a, x, y, actionFrom) => {
+        debugger
 
 
         if(a && x && y && actionFrom==="equals") {
+            debugger
             addresultValue(String(functions[a](x, y)))
+            debugger
             addAction("")
-            addActionUse(0)
-
-        } else if(a && x && y){
             debugger
             addActionUse(0)
+
+        } else if(a && x && y && actionFrom!=="equals"){
+            debugger
             addresultValue(String(functions[a](x, y)))
-
-
+            debugger
+            addAction(actionFrom)
+            debugger
+            addActionUse(1)
 
         }
     }
