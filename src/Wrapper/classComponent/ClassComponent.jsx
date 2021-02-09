@@ -9,34 +9,33 @@ const Calculator = (props) => {
     let [actionUse, addActionUse] = useState(0)
     let [resultValue, addresultValue] = useState("")
     let [displey, addDispley] = useState("0")
+    let [error, isError] = useState(false)
+    let [disableEdits, isDisableEdits] = useState(false)
 
 
     useEffect(() => {
-            debugger
-            if (!number1 && !number && !action && !resultValue && actionUse === 0) {
-
+            if (!number1 && !number && !action && !resultValue && actionUse === 0 && !error) {
                 addDispley("He!")
-            } else if (number1 && !number && !action && !resultValue && actionUse === 0) {
-                debugger
+            } else if (error) {
+                addDispley("Error! Division by zero")
+            }
+            else if (number1 && !number && !action && !resultValue && actionUse === 0 && !error) {
                 addDispley(number1)
-            } else if (action && !resultValue) {
-                debugger
+            } else if (action && !resultValue && !error) {
                 addDispley(`${number} ${action} ${number1}`)
-            } else if (action && resultValue && actionUse !== 2) {
-                debugger
+            } else if (action && resultValue && actionUse !== 2 && !error) {
                 addDispley(resultValue)
                 addnumber(resultValue)
                 addnumber1("")
                 addresultValue("")
-            } else if (!action && resultValue && actionUse === 0) {
-                debugger
+            } else if (!action && resultValue && actionUse === 0 && !error) {
                 addDispley(resultValue)
                 addActionUse(0)
                 addnumber1(resultValue)
                 addnumber("")
                 addresultValue("")
             }
-        }, [number1, action, number, resultValue, actionUse]
+        }, [number1, action, number, resultValue, actionUse,error]
     )
     console.log("number1", parseFloat(number1));
     console.log("number", parseFloat(number));
@@ -48,6 +47,7 @@ const Calculator = (props) => {
 
 
     const nubrebUse = (x) => {
+        isError(false)
         actionUse === 1
             ? secondNumber(x)
             : summ(x)
@@ -58,14 +58,22 @@ const Calculator = (props) => {
     }
 
     const summ = (x) => {
-        if (x === ",")
-        {ifZpt(x)
-        }else {
+        if (x === "," && !disableEdits) {
+            ifPoin()
+        } else if (x === "0" && !disableEdits) {
+            ifNull(x)
+        } else if (!disableEdits) {
             addnumber1(String(number1 += x))
         }
     }
 
-    const ifZpt = (x) => {
+    const ifNull = (x) => {
+        number1!=="0"
+        ? addnumber1(String(number1 += x))
+        :addnumber1(number1 += String(""))
+    }
+
+    const ifPoin = () => {
         if (number1.includes('.')) {
             addnumber1(number1 += String(""))
         } else {
@@ -77,25 +85,24 @@ const Calculator = (props) => {
     }
 
     const onAction = (a) => {
-        if (actionUse === 2){
-            debugger
-            result(action, number, number1, a)
-
-
-
-        }  else if (number1 && actionUse === 0) {
+        isDisableEdits(false)
+        if (number1 && actionUse === 0) {
             addAction(a)
-            addnumber(String(number1))
+            addnumber(String(parseFloat(number1)))
             addnumber1("")
             addActionUse(1)
 
         } else if (actionUse === 1) {
             addAction(a)
+
+        } else if (actionUse === 2) {
+            result(action, number, number1, a)
+            isDisableEdits(false)
+
         } else {
             addnumber1(number1 += String(""))
         }
     }
-
 
     const functions = {
 
@@ -104,24 +111,31 @@ const Calculator = (props) => {
         '*': (x, y) => parseFloat(x) * parseFloat(y),
         '/': (x, y) => parseFloat(y)
             ? (parseFloat(x) / parseFloat(y)).toFixed(6)
-            : "на 0 делить нельзя",
-        '%': (x, y) => parseFloat(x) / 100 * parseFloat(y)
+            : "Error",
+       /* '%': (x, y) => parseFloat(x) / 100 * parseFloat(y)*/
     };
 
-    const result = (a, x, y, actionFrom) => {
+    const result = (actuon, x, y, actionFrom) => {
+        let scannerError =functions[actuon](x, y)
         debugger
+        if (scannerError==="Error") {
+            isError(true)
+            rec()
+        }else if (scannerError===0) {
+            debugger
+            addresultValue("0")
 
+        }else {
+            addresultValue(scannerError)
+            isDisableEdits(true)
+        }
 
-        if (a && x && y && actionFrom === "equals") {
-            addresultValue(String(functions[a](x, y)))
+        if (actuon && x!=="" && y!=="" && actionFrom === "equals") {
             addAction("")
             addActionUse(0)
-
-        } else if (a && x && y && actionFrom !== "equals") {
-            addresultValue(String(functions[a](x, y)))
+        } else if (actuon && x!==null && y!==null && actionFrom !== "equals") {
             addAction(actionFrom)
             addActionUse(1)
-
         }
     }
     const rec = () => {
@@ -131,6 +145,7 @@ const Calculator = (props) => {
         addActionUse(0)
         addDispley("")
         addresultValue("")
+        isDisableEdits(false)
     }
 
     const inversion = () => {
@@ -163,7 +178,8 @@ const Calculator = (props) => {
 
                 <button className={style.grid_item} onClick={() => backspace()}>←</button>
 
-                <button className={style.grid_item} onClick={() => onAction("%")}>%</button>
+                <button className={style.grid_item} > </button>
+                {/*<button className={style.grid_item} onClick={() => onAction("%")}>%</button>*/}
 
                 <button className={style.grid_item} onClick={() => nubrebUse("1")}>1</button>
 
