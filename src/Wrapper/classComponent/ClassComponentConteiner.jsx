@@ -8,9 +8,8 @@ import {minus, plus, sendQuestionnaire} from "../../Redux/classComponentReduser"
 
 let mapStateToProps =(state)=>{
     return{
-        foto:state.classComponent.foto,
-        status:state.classComponent.status,
-        itog:state.classComponent.itog
+        foto:state.goodsInCart,
+
     }
 }
 

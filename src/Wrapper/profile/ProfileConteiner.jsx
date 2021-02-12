@@ -14,6 +14,7 @@ class ProfileAPIConteiner extends React.Component {
 
     refreshProfile() {
         let id = this.props.match.params.userId
+        debugger
         if (!id) {
             id = this.props.userId
             if (!id) {

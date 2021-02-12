@@ -1,5 +1,5 @@
 
-import {fotoComentReduser} from "./fotoComentReduser";
+import {cartComentReduser} from "./cartComentReduser";
 import {myPostReduser} from "./myPostReduser";
 import {dialogReduser} from "./dialogReduser";
 
@@ -65,7 +65,7 @@ let store = {
 
 
         this._state = dialogReduser( this._state, action )
-        this._state = fotoComentReduser(this._state,  action)
+        this._state = cartComentReduser(this._state,  action)
         this._state = myPostReduser(this._state,  action)
         this._callDubscriber(this._state)
          /*перерисовка */

@@ -35,10 +35,12 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor
     const ReduxFullForm = reduxForm({form: 'FullForm'})(FullForm)
 
     return <>
+{/*
 
         <span>_totalCount_-_{totalCount}_</span> <br/> <span>_pageSize_-_{pageSize}_</span> <br/>
         <span>_pageCount_-_{pageCount}_</span><br/><span>_currentPage_-_{currentPage}_</span><br/><span>leftLimit-_{leftLimit}_</span><br/>
         <span>rightLimit-_{rightLimit}_</span><br/>
+*/}
 
 
         {leftLimit > 1 && <button onClick={() => setPage(0)}>{"|<<"} Suda ...</button>}
@@ -59,7 +61,7 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor
         <br/>
 
 
-        <ReduxFullForm onSubmit={onPull}/>
+        {/*<ReduxFullForm onSubmit={onPull}/>*/}
 
 
     </>

@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {dialogReduser} from './dialogReduser';
-import {fotoComentReduser} from './fotoComentReduser';
+import {cartComentReduser} from './cartComentReduser';
 import {myPostReduser} from './myPostReduser';
 import {classComponentReduser} from './classComponentReduser';
 import {usersReduser} from './usersReduser';
@@ -13,7 +13,7 @@ import {appReduser} from "./appReduser";
 
 let reducers = combineReducers({
     DialogsData2 : dialogReduser,
-    FotosDataReducers: fotoComentReduser,
+    cartComentReduser: cartComentReduser,
     myPost : myPostReduser,
     classComponent:classComponentReduser,
     usersPage:usersReduser,

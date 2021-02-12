@@ -1,8 +1,6 @@
 import './App.css';
 import {NavLink, Route} from "react-router-dom";
 import React from "react";
-import MyFriendsConteiner from './Wrapper/myFriends/MyFriendsConteiner';
-import MyFotoContainer from './Wrapper/myFoto/MyFotoContainer';
 import UsersConteiner from './Wrapper/users/UsersConteiner';
 import ProfileConteiner from './Wrapper/profile/ProfileConteiner';
 import Login from "./Wrapper/Login/Login";
@@ -12,6 +10,7 @@ import {compose} from "redux";
 import {initializationThunkCreator} from "./Redux/appReduser";
 import Preloader from "./Elements/preloder/preloader";
 import CalculatorConteiner from "./Wrapper/classComponent/ClassComponentConteiner";
+import CartConteiner from "./Wrapper/cart/CartConteiner";
 
 
 class App extends React.Component {
@@ -39,19 +38,14 @@ class App extends React.Component {
                     <NavLink to='/profile'>                                {/*навигация*/}
                         <div className="navBar_Item">Profile</div>
                     </NavLink>
-{/*                    <NavLink to='/myFriends'>
-                        <div className="navBar_Item">My friends</div>
-                    </NavLink>
-                    <NavLink to='/myFoto'>
-                        <div className="navBar_Item">My foto</div>
-                    </NavLink>*/}
-
-
                     <NavLink to='/Calculator'>
                         <div className="navBar_Item">Calculator</div>
                     </NavLink>
                     <NavLink to='/users'>
                         <div className="navBar_Item">Users</div>
+                    </NavLink>
+                    <NavLink to='/Cart'>
+                        <div className="navBar_Item">Cart</div>
                     </NavLink>
                     <NavLink to='/login'>
                         <div className="navBar_Item">Login</div>
@@ -72,12 +66,9 @@ class App extends React.Component {
 
                         <Route exact path='/profile' render={() => <ProfileConteiner/>}/>
                         <Route exact path='/profile/:userId' render={() => <ProfileConteiner/>}/>
-
-{/*                        <Route exact path='/MyFriends' render={() => <MyFriendsConteiner store={this.props.store}/>}/>
-
-                        <Route exact path='/MyFoto' render={() => <MyFotoContainer store={this.props.store}/>}/>*/}
                         <Route exact path='/Calculator' render={() => <CalculatorConteiner/>}/>
                         <Route exact path='/users' render={() => <UsersConteiner/>}/>
+                        <Route exact path='/Cart' render={() => <CartConteiner/>}/>
                         <Route exact path='/login' render={() => <Login/>}/>
                     </div>
 

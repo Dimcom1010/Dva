@@ -18,8 +18,7 @@ const Calculator = (props) => {
                 addDispley("He!")
             } else if (error) {
                 addDispley("Error! Division by zero")
-            }
-            else if (number1 && !number && !action && !resultValue && actionUse === 0 && !error) {
+            } else if (number1 && !number && !action && !resultValue && actionUse === 0 && !error) {
                 addDispley(number1)
             } else if (action && !resultValue && !error) {
                 addDispley(`${number} ${action} ${number1}`)
@@ -35,7 +34,7 @@ const Calculator = (props) => {
                 addnumber("")
                 addresultValue("")
             }
-        }, [number1, action, number, resultValue, actionUse,error]
+        }, [number1, action, number, resultValue, actionUse, error]
     )
     console.log("number1", parseFloat(number1));
     console.log("number", parseFloat(number));
@@ -68,9 +67,9 @@ const Calculator = (props) => {
     }
 
     const ifNull = (x) => {
-        number1!=="0"
-        ? addnumber1(String(number1 += x))
-        :addnumber1(number1 += String(""))
+        number1 !== "0"
+            ? addnumber1(String(number1 += x))
+            : addnumber1(number1 += String(""))
     }
 
     const ifPoin = () => {
@@ -112,28 +111,40 @@ const Calculator = (props) => {
         '/': (x, y) => parseFloat(y)
             ? (parseFloat(x) / parseFloat(y)).toFixed(6)
             : "Error",
-       /* '%': (x, y) => parseFloat(x) / 100 * parseFloat(y)*/
+
     };
 
+
+    const resultСheck = (a, x, y, actionFrom) => {
+        (a && x !== "" && y !== "")
+            ? result(a, x, y, actionFrom)
+            : rec()
+    }
+
     const result = (actuon, x, y, actionFrom) => {
-        let scannerError =functions[actuon](x, y)
         debugger
-        if (scannerError==="Error") {
+        let scannerError = functions[actuon](x, y)
+        debugger
+        if (scannerError === "Error") {
+            debugger
             isError(true)
             rec()
-        }else if (scannerError===0) {
+        } else if (scannerError === 0) {
             debugger
             addresultValue("0")
 
-        }else {
+        } else {
+            debugger
             addresultValue(scannerError)
             isDisableEdits(true)
         }
 
-        if (actuon && x!=="" && y!=="" && actionFrom === "equals") {
+        if (actuon && x !== "" && y !== "" && actionFrom === "equals") {
+            debugger
             addAction("")
             addActionUse(0)
-        } else if (actuon && x!==null && y!==null && actionFrom !== "equals") {
+        } else if (actuon && x !== null && y !== null && actionFrom !== "equals") {
+            debugger
             addAction(actionFrom)
             addActionUse(1)
         }
@@ -152,12 +163,15 @@ const Calculator = (props) => {
         addnumber1(String(parseFloat(number1) * (-1)))
     }
     const backspace = () => {
-        let last = number1.slice(-1)
+        let last = String(number1).slice(-1)
         if (last === ".") {
-            addnumber1(number1.slice(0, -1))
+            addnumber1(String(number1).slice(0, -1))
         } else {
-            addnumber1(number1.slice(0, -1))
+            addnumber1(String(number1).slice(0, -1))
         }
+    }
+    const percent = () => {
+        addnumber1(number / 100 * number1)
     }
 
     /*   let display = React.createRef()*/
@@ -178,8 +192,7 @@ const Calculator = (props) => {
 
                 <button className={style.grid_item} onClick={() => backspace()}>←</button>
 
-                <button className={style.grid_item} > </button>
-                {/*<button className={style.grid_item} onClick={() => onAction("%")}>%</button>*/}
+                <button className={style.grid_item} onClick={() => percent()}>%</button>
 
                 <button className={style.grid_item} onClick={() => nubrebUse("1")}>1</button>
 
@@ -209,7 +222,8 @@ const Calculator = (props) => {
 
                 <button className={style.grid_item} onClick={() => nubrebUse(",")}>,</button>
 
-                <button className={style.grid_item} onClick={() => result(action, number, number1, "equals")}>=</button>
+                <button className={style.grid_item} onClick={() => resultСheck(action, number, number1, "equals")}>=
+                </button>
 
                 <button className={style.grid_item} onClick={() => onAction("+")}>+</button>
 
