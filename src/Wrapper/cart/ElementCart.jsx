@@ -1,31 +1,33 @@
 import style from "./CartStyle.module.css";
-import React from "react";
+import React, {useEffect} from "react";
 
-const  ElementCart=(props) =>{
-    return(
+
+const  ElementCart=({goodsInCartData,delete_order}) =>{
+
+
+    return (<>
+        {goodsInCartData.map (u =>
         <div className={style.cart_left_column}>
             <div className={style.user_contacts}>
                 <div className={style.shop_logo}>
-                    <div className={style.shop_photo}>L</div>
-                    <div className={style.shop_name}>aFewHomeTruths</div>
+                    <div className={style.shop_photo}>{u.shop_logo}</div>
+                    <div className={style.shop_name}>{u.shop_name}</div>
                 </div>
                 <div className={style.shop_contact}>Contact shop</div>
             </div>
 
             <div className={style.conteiner_info}>
-                <div className={style.product_foto}>FOTO</div>
+                <div className={style.product_foto}>{u.product_foto}</div>
                 <div className={style.product_info_conteiner}>
-                    <div className={style.product_name}>Valentines Weirdo Mug</div>
-                    <div className={style.product_description}>description description description
-                        description
-                    </div>
+                    <div className={style.product_name}>{u.product_name}</div>
+                    <div className={style.product_description}>{u.product_description}</div>
 
 
-                    <div className={style.product_deletion_of_cart}>delete</div>
+                    <div className={style.product_deletion_of_cart}><button onClick={()=>delete_order(u.order_id)}> delete</button></div>
                 </div>
                 <div className={style.purchase_block}>
-                    <div className={style.product_quantity}>1</div>
-                    <div className={style.product_cost}>USD 20.22</div>
+                    <div className={style.product_quantity}>{u.product_quantity}</div>
+                    <div className={style.product_cost}>{u.product_mony} {u.product_cost}</div>
                 </div>
             </div>
             <div className={style.gift_coupon_block}>
@@ -43,7 +45,7 @@ const  ElementCart=(props) =>{
                 </div>
             </div>
         </div>
-
-    )
+            )}
+        </>)
 }
 export default ElementCart

@@ -1,10 +1,6 @@
-import React from "react";
 import {connect} from "react-redux";
 import Cart from "./Cart";
-
-
-
-
+import {creating_new_order, delete_order} from "../../Redux/cartComentReduser";
 
 let mapStateToProps =(state)=>{
     return{
@@ -14,7 +10,7 @@ let mapStateToProps =(state)=>{
 }
 
 
-const CartConteiner = connect (mapStateToProps, null)
+const CartConteiner = connect (mapStateToProps, {creating_new_order,delete_order} )
 (Cart);
 
 export default CartConteiner

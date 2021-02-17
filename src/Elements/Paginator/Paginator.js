@@ -1,17 +1,16 @@
 import React, {useState} from "react";
 import style from "../../Wrapper/users/Users.module.css";
-import {Field, reduxForm} from "redux-form";
-import {range} from "../forms/forms";
+
 
 
 
 const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor}) => {
 
-    let onPull = (values) => {
+/*    let onPull = (values) => {
         debugger
         console.log("значение ")
         console.log(values.PullUser)
-    }
+    }*/
 
 
     let pageCount = Math.ceil(totalCount / pageSize)
@@ -23,7 +22,7 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor
     let leftLimit = page - 5
     let rightLimit = page + 5
 
-    const FullForm = (props) => {
+/*    const FullForm = (props) => {
         debugger
 
         return (
@@ -31,8 +30,8 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChangedThunkCreacor
                 <Field name={'PullUser'} component={range} min="0" max="100" step="25"/>
             </form>
         )
-    }
-    const ReduxFullForm = reduxForm({form: 'FullForm'})(FullForm)
+    }*/
+    /*const ReduxFullForm = reduxForm({form: 'FullForm'})(FullForm)*/
 
     return <>
 {/*
