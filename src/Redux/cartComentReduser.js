@@ -1,5 +1,6 @@
 const CREATING_NEW_ORDER = 'CREATING_NEW_ORDER'
 const DELETE_ORDER='DELETE_ORDER'
+const SET_QUANTITY_OF_PRODUCT='SET_QUANTITY_OF_PRODUCT'
 
 
 let initialState = {
@@ -41,18 +42,26 @@ debugger
             }
         }
         case DELETE_ORDER: {
-            debugger
             const idx = state.goodsInCartData.findIndex((el)=>el.order_id===action.order_id)
             state.goodsInCartData.splice(idx,1)
             const newData =Object.assign(state.goodsInCartData)
-            debugger
             return {
                 ...state,
                 goodsInCartData: [...newData]
-
             }
-
         }
+        case SET_QUANTITY_OF_PRODUCT:{
+            debugger
+            return {
+                ...state,
+                goodsInCartData: state.goodsInCartData.map(u => {
+                    if (u.order_id === action.order_id)
+                        return {...u, product_quantity: action.quantity}
+                    return u
+                })
+            }
+        }
+
 
         default:                    /*Если ничго не пришло возвращаем просто state*/
             return state;
@@ -63,4 +72,5 @@ export const creating_new_order = (new_order) => ({type: CREATING_NEW_ORDER, new
 
 export const delete_order = (order_id) => ({type: DELETE_ORDER, order_id})
 
+export  const set_quantity_of_product= (order_id, quantity) => ({type: SET_QUANTITY_OF_PRODUCT, order_id, quantity})
 

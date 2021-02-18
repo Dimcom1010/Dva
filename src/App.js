@@ -11,6 +11,7 @@ import {initializationThunkCreator} from "./Redux/appReduser";
 import Preloader from "./Elements/preloder/preloader";
 import CalculatorConteiner from "./Wrapper/classComponent/ClassComponentConteiner";
 import CartConteiner from "./Wrapper/cart/CartConteiner";
+import ShopConteiner from "./Wrapper/Shop/ShopConteiner";
 
 
 class App extends React.Component {
@@ -44,6 +45,9 @@ class App extends React.Component {
                     <NavLink to='/users'>
                         <div className="navBar_Item">Users</div>
                     </NavLink>
+                    <NavLink to='/Shop'>
+                        <div className="navBar_Item">Shop</div>
+                    </NavLink>
                     <NavLink to='/Cart'>
                         <div className="navBar_Item">Cart</div>
                     </NavLink>
@@ -68,6 +72,7 @@ class App extends React.Component {
                         <Route exact path='/profile/:userId' render={() => <ProfileConteiner/>}/>
                         <Route exact path='/Calculator' render={() => <CalculatorConteiner/>}/>
                         <Route exact path='/users' render={() => <UsersConteiner/>}/>
+                        <Route exact path='/Shop' render={() => <ShopConteiner/>}/>
                         <Route exact path='/Cart' render={() => <CartConteiner/>}/>
                         <Route exact path='/login' render={() => <Login/>}/>
                     </div>

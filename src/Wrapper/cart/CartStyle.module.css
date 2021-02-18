@@ -225,3 +225,13 @@
     text-align: left;
     padding: 18px;
 }
+.shop_wrapper{
+    width: 100%;
+    display: flex;
+    background: white;
+    justify-content: space-around;
+}
+.shop_item{
+
+    margin: 10px 0 50px;
+}
