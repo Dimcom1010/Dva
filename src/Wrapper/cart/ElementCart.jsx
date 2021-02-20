@@ -1,23 +1,24 @@
 import style from "./CartStyle.module.css";
-import React, {useEffect} from "react";
+import React from "react";
+import logo1 from "../../img/logo/logo_1.jpg";
+import foto1 from "../../img/Foto_handmade/makrome_1.jpg";
 
 
-const  ElementCart=({goodsInCartData,delete_order}) =>{
-
-
+const  ElementCart=({objectsInCart,delete_order}) =>{
     return (<>
-        {goodsInCartData.map (u =>
+
+        {objectsInCart.map (u =>
         <div className={style.cart_left_column}>
             <div className={style.user_contacts}>
                 <div className={style.shop_logo}>
-                    <div className={style.shop_photo}>{u.shop_logo}</div>
+                    <div className={style.shop_photo}><img alt="img" src={logo1}/></div>
                     <div className={style.shop_name}>{u.shop_name}</div>
                 </div>
                 <div className={style.shop_contact}>Contact shop</div>
             </div>
 
             <div className={style.conteiner_info}>
-                <div className={style.product_foto}>{u.product_foto}</div>
+                <div className={style.product_foto}><img alt="img" src={foto1}/></div>
                 <div className={style.product_info_conteiner}>
                     <div className={style.product_name}>{u.product_name}</div>
                     <div className={style.product_description}>{u.product_description}</div>
@@ -26,7 +27,15 @@ const  ElementCart=({goodsInCartData,delete_order}) =>{
                     <div className={style.product_deletion_of_cart}><button onClick={()=>delete_order(u.order_id)}> delete</button></div>
                 </div>
                 <div className={style.purchase_block}>
-                    <div className={style.product_quantity}>{u.product_quantity}</div>
+                    <div className={style.product_quantity}>
+                        <select size="1"  name="hero[]">
+                            <option disabled>шт.</option>
+                            <option selected value="1">1</option>
+                            <option  value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
                     <div className={style.product_cost}>{u.product_mony} {u.product_cost}</div>
                 </div>
             </div>

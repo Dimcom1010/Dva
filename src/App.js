@@ -14,6 +14,7 @@ import CartConteiner from "./Wrapper/cart/CartConteiner";
 import ShopConteiner from "./Wrapper/Shop/ShopConteiner";
 
 
+
 class App extends React.Component {
     componentDidMount() {
          this.props.initializationThunkCreator()

@@ -1,19 +1,21 @@
 import {connect} from "react-redux";
 
-import {creating_new_order} from "../../Redux/cartComentReduser";
+
 import Shop from "./Shop";
+import {add_new_order} from "../../Redux/cartComentReduser";
 
 let mapStateToProps =(state)=>{
     return{
-        goodsInCartData:state.cartComentReduser.goodsInCartData
-
+        goodsInCartData:state.cartComentReduser.goodsInCartData,
+        isAuth: state.auth.isAuth
     }
 }
 
 
 const ShopConteiner = connect (mapStateToProps,
     {
-        creating_new_order,
+        add_new_order,
+
 
     } )
 (Shop);

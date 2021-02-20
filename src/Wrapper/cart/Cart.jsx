@@ -1,20 +1,18 @@
 import React from "react";
 import style from "./CartStyle.module.css"
 import ElementCart from "./ElementCart";
+import Shopping from "./Shopping";
 
+const Cart = ({goodsInCartData, delete_order,set_quantity_of_product, ...props}) => {
 
-
-
-
-
-
-const Cart = ({goodsInCartData, creating_new_order, delete_order,set_quantity_of_product, ...props}) => {
-
+    let objectsInCart =goodsInCartData.filter(object=>object.inCart===true)
     let isCart
-    goodsInCartData.length? isCart =true: isCart=false
+    objectsInCart.length? isCart =true: isCart=false
+    debugger
 
     return (
         <div className={style.wrapper_cart}>
+
             <div className={style.conteiner_cart}>
 
                 <div className={style.titel_cart}>
@@ -24,19 +22,19 @@ const Cart = ({goodsInCartData, creating_new_order, delete_order,set_quantity_of
                     </div>
 
                     {goodsInCartData.length
-                        ? < div className={style.items_in_cart}>{goodsInCartData.length} items in your cart</div>
+                        ? < div className={style.items_in_cart}>{objectsInCart.length} items in your cart</div>
                         : < div className={style.items_in_cart}>Карзина пуста</div>
                     }
-                    <div className={style.keep_shopiing}>Keep shopping</div>
+                    <div></div>
                 </div>
                 <div className={style.wrapper_column_carts}>
                     <div className={style.elements_in_column}>
-                        <ElementCart delete_order={delete_order} goodsInCartData={goodsInCartData}/>
+                        <ElementCart delete_order={delete_order} objectsInCart={objectsInCart}/>
                     </div>
 
                     <div className={style.cart_rigth_column}>
                         {isCart &&
-                        <div className={style.block_pay}>How you'll pay</div>}
+                        <Shopping goodsInCartData={goodsInCartData}/>}
                     </div>
                 </div>
 
